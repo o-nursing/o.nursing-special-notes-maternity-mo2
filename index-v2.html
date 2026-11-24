@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Special Notes — Module 2 | O.Nursing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+/* ---- v3 design system: the research-flashcards template's exact layout,
+   re-skinned in the memo's Navy Medical LIGHT palette ---- */
+:root{
+  --bg-0:#EAF2F8; --bg-1:#F2F7FB;
+  --glass:#ffffff; --glass-brd:#C9D9E8; --glass-brd-hover:#5B8DB8;
+  --txt-hi:#22303C; --txt-mid:#5A6B7C; --txt-lo:#8A9BAE;
+  --navy:#1B3A5C; --navy-d:#122A44; --navy-dim:rgba(27,58,92,0.08); --navy-glow:rgba(91,141,184,0.35);
+  --sky:#5B8DB8; --sky-dim:rgba(91,141,184,0.12);
+  --green:#2E7D4F; --green-dim:#E6F4EC;
+  --red:#B3261E; --red-dim:#FDECEA;
+  --amber:#8A6D00; --amber-dim:#FDF3D7;
+  --radius:18px; --radius-sm:12px;
+  /* local timer injected styles read these vars (navy values on purpose) */
+  --gold:#5B8DB8; --gold-l:#EAF2F8; --burg:#1B3A5C;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html,body{height:100%;}
+body{
+  font-family:'Tajawal',sans-serif;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(91,141,184,0.20), transparent 60%),
+    radial-gradient(ellipse 900px 600px at 105% 10%, rgba(27,58,92,0.10), transparent 55%),
+    radial-gradient(ellipse 1200px 800px at 50% 120%, rgba(91,141,184,0.12), transparent 60%),
+    var(--bg-0);
+  color:var(--txt-hi);
+  min-height:100vh;
+  overflow-x:hidden;
+  padding-top:38px;
+}
+.mono{font-family:'JetBrains Mono',monospace;}
+.bg-pulse{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:0.85;
+  display:flex; align-items:center; justify-content:center;}
+.bg-pulse svg{width:100%; height:100%;}
+.giant-target{transform-box:fill-box; transform-origin:center; animation:targetBreathe 7s ease-in-out infinite;}
+@keyframes targetBreathe{0%,100%{transform:scale(1);}50%{transform:scale(1.06);}}
+.target-spin{transform-box:fill-box; transform-origin:center; animation:targetSpin 22s linear infinite;}
+@keyframes targetSpin{to{transform:rotate(360deg);}}
+
+.app{position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column;}
+.wrap{max-width:760px; margin:0 auto; padding:0 20px; width:100%;}
+#tq-host{padding:0 20px;}
+.topbar{padding:22px 0 14px; display:flex; align-items:center; justify-content:space-between;}
+.brand{display:flex; align-items:center; gap:10px;}
+.brand-mark{width:34px; height:34px; border-radius:10px; font-size:17px;
+  background:linear-gradient(135deg, var(--navy), var(--sky));
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 24px var(--navy-glow); flex-shrink:0;}
+.brand-text{display:flex; flex-direction:column; line-height:1.15;}
+.brand-text b{font-size:15px; font-weight:800; letter-spacing:.2px;}
+.brand-text span{font-size:11px; color:var(--txt-lo); font-family:'JetBrains Mono',monospace; letter-spacing:.3px;}
+.pill-btn{background:var(--glass); border:1px solid var(--glass-brd); color:var(--txt-mid);
+  padding:8px 16px; border-radius:999px; font-family:'Tajawal',sans-serif; font-size:13px; font-weight:500;
+  cursor:pointer; transition:.18s;}
+.pill-btn:hover{border-color:var(--glass-brd-hover); color:var(--txt-hi); background:rgba(27,58,92,0.04);}
+.pill-btn:active{transform:scale(0.96);}
+.pill-btn:disabled{opacity:0.35; cursor:not-allowed;}
+.screen{display:none; flex:1; flex-direction:column;}
+.screen.active{display:flex;}
+
+.hero{padding:18px 0 8px;}
+.hero h1{font-size:26px; font-weight:800; line-height:1.35; margin-bottom:6px;}
+.hero h1 .accent{background:linear-gradient(90deg, var(--navy), var(--sky));
+  -webkit-background-clip:text; background-clip:text; color:transparent;}
+.hero p{color:var(--txt-mid); font-size:14px;}
+.stats-row{display:flex; gap:10px; margin:18px 0 22px;}
+.stat-chip{flex:1; background:var(--glass); border:1px solid var(--glass-brd); border-radius:var(--radius-sm);
+  padding:12px 14px;}
+.stat-chip .n{font-family:'JetBrains Mono',monospace; font-size:20px; font-weight:600;}
+.stat-chip .l{font-size:11.5px; color:var(--txt-lo); margin-top:2px;}
+.stat-chip.navy .n{color:var(--navy);}
+.stat-chip.sky .n{color:var(--sky);}
+.stat-chip.green .n{color:var(--green);}
+.section-label{display:flex; align-items:center; justify-content:space-between; margin:4px 0 12px;
+  font-size:13px; color:var(--txt-lo); font-weight:500;}
+.section-label .sel-all{color:var(--sky); cursor:pointer; font-size:12.5px; font-weight:600;
+  background:none; border:none; font-family:'Tajawal',sans-serif;}
+.topic-list{display:grid; grid-template-columns:1fr 1fr; gap:10px; padding-bottom:16px;}
+.topic-card{position:relative; background:var(--glass); border:1px solid var(--glass-brd);
+  border-radius:var(--radius-sm); padding:13px 14px; cursor:pointer; transition:.16s;
+  display:flex; flex-direction:column; gap:10px;}
+.topic-card:hover{border-color:var(--glass-brd-hover); background:rgba(27,58,92,0.03);}
+.topic-card.checked{border-color:var(--navy);
+  background:linear-gradient(90deg, rgba(27,58,92,0.07), rgba(91,141,184,0.05));}
+.topic-card-top{display:flex; align-items:center; justify-content:space-between;}
+.topic-check{width:20px; height:20px; border-radius:6px; border:2px solid var(--glass-brd-hover);
+  flex-shrink:0; display:flex; align-items:center; justify-content:center; transition:.16s;}
+.topic-card.checked .topic-check{background:linear-gradient(135deg, var(--navy), var(--sky)); border-color:transparent;}
+.topic-check svg{width:12px; height:12px; opacity:0; transition:.16s;}
+.topic-card.checked .topic-check svg{opacity:1;}
+.topic-info{min-width:0;}
+.topic-info .t-name{font-size:13px; font-weight:600; margin-bottom:3px; line-height:1.3;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+  min-height:calc(1.3em * 2);}
+.topic-info .t-meta{font-size:10.5px; color:var(--txt-lo); font-family:'JetBrains Mono',monospace;}
+.topic-progress-ring{width:30px; height:30px; flex-shrink:0; position:relative;}
+.topic-progress-ring svg{transform:rotate(-90deg); width:100%; height:100%;}
+.topic-progress-ring .bg-ring{fill:none; stroke:rgba(27,58,92,0.10); stroke-width:3;}
+.topic-progress-ring .fg-ring{fill:none; stroke:var(--green); stroke-width:3; stroke-linecap:round; transition:stroke-dashoffset .3s;}
+.topic-progress-ring .pct{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-size:9px; font-family:'JetBrains Mono',monospace; color:var(--txt-mid);}
+.floating-bar{position:fixed; bottom:0; left:0; right:0; z-index:5;
+  padding:14px 20px calc(16px + env(safe-area-inset-bottom));
+  background:linear-gradient(180deg, transparent, rgba(234,242,248,0.88) 25%, var(--bg-0) 60%);}
+.floating-bar-inner{max-width:760px; margin:0 auto; display:flex; align-items:center; gap:12px; flex-wrap:wrap;}
+.floating-bar-inner .sel-count{order:2;}
+.floating-bar-inner #btn-start{order:3;}
+.sel-count{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--txt-mid); white-space:nowrap;}
+.btn-primary{flex:1; background:linear-gradient(90deg, var(--navy), var(--sky)); color:#fff; border:none;
+  padding:15px 20px; border-radius:999px; font-family:'Tajawal',sans-serif; font-size:15px; font-weight:700;
+  cursor:pointer; transition:.16s; box-shadow:0 8px 30px -8px var(--navy-glow);
+  display:flex; align-items:center; justify-content:center; gap:8px;}
+.btn-primary:active{transform:scale(0.98);}
+.btn-primary:disabled{opacity:0.35; cursor:not-allowed; box-shadow:none;}
+.btn-primary svg{width:16px; height:16px;}
+
+/* ---- SETTINGS ---- */
+.settings-card{background:var(--glass); border:1px solid var(--glass-brd); border-radius:var(--radius);
+  padding:22px; margin-bottom:16px;}
+.settings-card h3{font-size:14px; font-weight:700; margin-bottom:14px; color:var(--txt-hi);
+  display:flex; align-items:center; gap:8px;}
+.settings-card h3 .num{width:20px; height:20px; border-radius:6px; background:var(--glass-brd);
+  display:flex; align-items:center; justify-content:center; font-size:11px;
+  font-family:'JetBrains Mono',monospace; color:var(--txt-mid);}
+.opt-grid{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+.opt-btn{background:rgba(27,58,92,0.03); border:1px solid var(--glass-brd); border-radius:11px;
+  padding:12px 10px; text-align:center; font-size:13px; font-weight:600; color:var(--txt-mid);
+  cursor:pointer; transition:.15s; font-family:'Tajawal',sans-serif;}
+.opt-btn:hover{border-color:var(--glass-brd-hover);}
+.opt-btn.active{background:linear-gradient(135deg, rgba(27,58,92,0.12), rgba(91,141,184,0.10));
+  border-color:var(--navy); color:var(--txt-hi);}
+.queue-note{font-size:12px; color:var(--txt-lo); margin-top:12px; font-family:'JetBrains Mono',monospace;}
+.progress-summary{display:flex; align-items:center; gap:14px; margin-bottom:6px;}
+.ring-big{width:56px; height:56px; position:relative; flex-shrink:0;}
+.ring-big svg{transform:rotate(-90deg); width:100%; height:100%;}
+.ring-big .bg-ring{fill:none; stroke:rgba(27,58,92,0.10); stroke-width:5;}
+.ring-big .fg-ring{fill:none; stroke:url(#ringGrad); stroke-width:5; stroke-linecap:round; transition:stroke-dashoffset .4s;}
+.ring-big .pct{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:'JetBrains Mono',monospace; font-weight:600; font-size:13px;}
+.progress-text b{font-size:15px; display:block;}
+.progress-text span{font-size:12.5px; color:var(--txt-lo);}
+.clear-progress{margin-right:auto; background:none; border:none; color:var(--txt-lo); font-size:12px;
+  cursor:pointer; display:flex; align-items:center; gap:5px; font-family:'Tajawal',sans-serif;}
+.clear-progress:hover{color:var(--red);}
+
+/* ---- STUDY ---- */
+.study-header{padding:16px 0 10px; display:flex; align-items:center; gap:12px;}
+.exit-btn{width:38px; height:38px; border-radius:11px; background:var(--glass); border:1px solid var(--glass-brd);
+  display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:.15s;}
+.exit-btn:hover{border-color:var(--red);}
+.exit-btn svg{width:16px; height:16px; stroke:var(--txt-mid);}
+.exit-btn:hover svg{stroke:var(--red);}
+.qbar-track{flex:1; height:7px; border-radius:99px; background:rgba(27,58,92,0.10); overflow:hidden; position:relative;}
+.qbar-fill{height:100%; border-radius:99px; background:linear-gradient(90deg, var(--navy), var(--sky)); transition:width .3s;}
+.qcounter{font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--txt-mid); white-space:nowrap; flex-shrink:0; direction:ltr;}
+.card-meta{display:flex; align-items:center; gap:8px; margin:6px 0 12px; flex-wrap:wrap;}
+.card-sec{font-size:11.5px; color:var(--txt-lo); font-family:'JetBrains Mono',monospace;}
+.ext-star{display:inline-flex; align-items:center; gap:4px; background:var(--amber-dim); color:var(--amber);
+  font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:999px;}
+.known-badge{display:inline-flex; align-items:center; gap:4px; background:var(--green-dim); color:var(--green);
+  font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:999px;}
+.review-badge{display:inline-flex; align-items:center; gap:4px; background:var(--sky-dim); color:var(--sky);
+  font-size:10.5px; font-weight:700; padding:3px 10px; border-radius:999px;}
+
+.flashcard{perspective:1400px; cursor:pointer; flex:1; min-height:380px; max-height:58vh;}
+.fc-inner{position:relative; width:100%; height:100%; min-height:380px; max-height:58vh;
+  transform-style:preserve-3d; transition:transform .55s cubic-bezier(.2,.7,.3,1.15);}
+.flashcard.flipped .fc-inner{transform:rotateY(180deg);}
+.fc-face{position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  background:var(--glass); border:1px solid var(--glass-brd); border-radius:var(--radius);
+  padding:26px 24px; overflow-y:auto; display:flex; flex-direction:column;}
+.fc-front{align-items:center; justify-content:center; text-align:center;}
+.fc-front .qnum{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--navy); margin-bottom:12px; font-weight:600;}
+.fc-front .qtitle{font-size:19px; font-weight:700; line-height:1.7; direction:ltr;}
+.fc-front .tap-hint{margin-top:22px; font-size:12px; color:var(--txt-lo); display:flex; align-items:center; gap:6px; justify-content:center;}
+.fc-front .fc-src{margin-top:14px;}
+.fc-back{transform:rotateY(180deg); direction:ltr; text-align:left;}
+.fc-back .tap-hint{margin-top:16px; font-size:12px; color:var(--txt-lo); text-align:center;}
+.ans-sub{font-size:13.5px; font-weight:800; color:var(--navy); margin:14px 0 6px;}
+.ans-sub:first-child{margin-top:0;}
+.fc-back p{font-size:14px; line-height:1.65; color:var(--txt-mid); margin:6px 0;}
+.fc-back ol{margin:6px 0 6px 4px; padding-left:20px;}
+.fc-back ol li{font-size:14px; line-height:1.6; color:var(--txt-hi); margin-bottom:6px; padding-left:4px;}
+.fc-back ol li::marker{color:var(--navy); font-weight:700; font-family:'JetBrains Mono',monospace;}
+.am-opts{margin-top:10px; padding-inline-start:22px; direction:ltr; text-align:left; line-height:1.8; font-size:15px;}
+.am-opts li{margin-top:2px;}
+.mark-row{display:flex; gap:10px; padding:16px 0 calc(8px + env(safe-area-inset-bottom));}
+.mark-btn{flex:1; padding:15px; border-radius:14px; border:1.5px solid var(--glass-brd); background:var(--glass);
+  color:var(--txt-hi); font-family:'Tajawal',sans-serif; font-size:14.5px; font-weight:700; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:8px; transition:.15s;}
+.mark-btn:active{transform:scale(0.97);}
+.mark-btn.know{border-color:var(--green); background:var(--green-dim);}
+.mark-btn.know:hover{background:rgba(46,125,79,0.14);}
+.mark-btn.dunno{border-color:var(--red); background:var(--red-dim);}
+.mark-btn.dunno:hover{background:rgba(179,38,30,0.12);}
+.study-nav{display:flex; gap:10px; padding-bottom:calc(16px + env(safe-area-inset-bottom));}
+.nav-btn{flex:1; padding:13px; border-radius:14px; border:1px solid var(--glass-brd); background:var(--glass);
+  color:var(--txt-hi); font-family:'Tajawal',sans-serif; font-size:14px; font-weight:700; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; gap:6px; transition:.15s;}
+.nav-btn:hover{border-color:var(--glass-brd-hover);}
+.nav-btn:disabled{opacity:0.3; cursor:not-allowed;}
+.nav-btn svg{width:15px; height:15px;}
+
+/* ---- QUIZ (scored) — same flip-card design as the study screen ---- */
+.fc-front.quiz-front{align-items:stretch; justify-content:flex-start; text-align:left;}
+.fc-front.quiz-front .qnum{text-align:center;}
+.fc-front.quiz-front .tap-hint{justify-content:center;}
+.fc-back.quiz-back{direction:rtl; text-align:right;}
+.q{font-size:18px; font-weight:700; line-height:1.8; direction:ltr; text-align:left;}
+.q .ar-note{font-size:14px; color:var(--txt-mid); font-weight:500; direction:rtl; text-align:right; display:block; margin-top:4px;}
+.qsrc{margin-top:10px; direction:ltr; text-align:left;}
+.opts{margin-top:14px; display:flex; flex-direction:column; gap:10px;}
+.opt{border:1.5px solid #C9D9E8; background:#fff; border-radius:12px; padding:12px 14px; font-size:16px; cursor:pointer; text-align:left; direction:ltr; font-family:inherit; line-height:1.5;}
+.opt:hover{border-color:var(--sky);}
+.opt.correct{border-color:var(--green); background:var(--green-dim);}
+.opt.wrong{border-color:var(--red); background:var(--red-dim);}
+.opt:disabled{cursor:default;}
+.tf{display:flex; gap:10px; margin-top:14px;}
+.tf .opt{flex:1; text-align:center; font-weight:800; font-size:17px;}
+.hintbtn{background:var(--pale,#EAF2F8); color:var(--navy-d); border:1px solid var(--sky); border-radius:10px; padding:8px 14px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; margin-top:14px;}
+.hint{display:none; background:#FFFBE6; border:1px dashed var(--sky); border-radius:10px; padding:10px 14px; margin-top:10px; font-size:14px; line-height:1.8; direction:rtl; text-align:right;}
+.hint.show{display:block;}
+.explain{display:none; border-radius:10px; padding:12px 14px; margin-top:12px; font-size:14.5px; line-height:1.9;}
+.explain.show{display:block;}
+.explain.ok{background:var(--green-dim); border:1px solid var(--green);}
+.explain.no{background:var(--red-dim); border:1px solid var(--red);}
+.explain b{color:var(--navy);}
+.model{display:none; background:var(--bg-1); border:1px solid #B9CBDD; border-radius:10px; padding:12px 14px; margin-top:12px; font-size:14.5px; line-height:1.9; white-space:pre-line;}
+.model.show{display:block;}
+.badge{font-size:12px; font-weight:800; border-radius:12px; padding:3px 10px;}
+.badge.easy{background:#E6F4EC; color:var(--green);}
+.badge.med{background:#FDF3D7; color:#8A6D00;}
+.badge.hard{background:#FDECEA; color:var(--red);}
+/* source tag (on every question) */
+.srctag{display:inline-block; background:var(--pale,#EAF2F8); color:var(--navy); border:1px solid var(--sky); border-radius:999px; padding:3px 10px; font-size:12px; font-weight:700; line-height:1.5;}
+.srctag.special{background:var(--navy); color:#fff; border-color:var(--navy);}
+/* level filter */
+.levels{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px;}
+.lvl{border:1.5px solid var(--sky); background:#fff; color:var(--navy); border-radius:20px; padding:7px 16px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit;}
+.lvl.on{background:var(--navy); color:#fff; border-color:var(--navy);}
+/* generic buttons (also used by the local timer's injected time-up card) */
+.card{background:#fff; border:1px solid #C9D9E8; border-radius:16px; padding:20px; margin-top:16px; box-shadow:0 2px 10px rgba(27,58,92,.07);}
+.btn{display:block; width:100%; background:var(--navy); color:#fff; border:none; border-radius:12px; padding:14px; font-size:17px; font-weight:800; cursor:pointer; font-family:inherit; margin-top:16px;}
+.btn:hover{background:var(--navy-d);}
+.btn.ghost{background:#fff; color:var(--navy); border:1.5px solid var(--navy); margin-top:10px;}
+.btn:disabled{opacity:.5; cursor:default;}
+.small{font-size:13px; color:var(--txt-mid); text-align:center; margin-top:10px; line-height:1.7;}
+.legend{background:var(--pale,#EAF2F8); border:1px solid #B9CBDD; border-radius:12px; padding:12px 14px; margin-top:14px; font-size:13.5px; line-height:2; color:var(--txt-hi);}
+.legend b{color:var(--navy);}
+.legend .srctag{margin:0 2px;}
+
+
+/* ---- SUMMARY / RESULTS ---- */
+.results-hero{text-align:center; padding:36px 0 18px;}
+.results-ring{width:150px; height:150px; margin:0 auto 20px; position:relative;}
+.results-ring svg{transform:rotate(-90deg); width:100%; height:100%;}
+.results-ring .bg-ring{fill:none; stroke:rgba(27,58,92,0.08); stroke-width:9;}
+.results-ring .fg-ring{fill:none; stroke:url(#ringGradBig); stroke-width:9; stroke-linecap:round;
+  transition:stroke-dashoffset 1s cubic-bezier(.2,.8,.2,1);}
+.results-ring .pct-big{position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;}
+.results-ring .pct-big b{font-size:36px; font-family:'JetBrains Mono',monospace; font-weight:700;}
+.results-ring .pct-big span{font-size:11.5px; color:var(--txt-lo); margin-top:2px;}
+.results-hero h2{font-size:19px; font-weight:800; margin-bottom:6px;}
+.results-hero p{color:var(--txt-mid); font-size:13.5px;}
+.results-stats{display:flex; gap:10px; margin:20px 0;}
+.rstat{flex:1; text-align:center; background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px;
+  padding:16px 10px;}
+.rstat .n{font-family:'JetBrains Mono',monospace; font-size:22px; font-weight:700;}
+.rstat .l{font-size:11.5px; color:var(--txt-lo); margin-top:3px;}
+.rstat.known .n{color:var(--green);}
+.rstat.unknown .n{color:var(--red);}
+.results-actions{display:flex; gap:10px;}
+.review-section{margin:26px 0 100px;}
+.review-section h3{font-size:14px; font-weight:700; margin-bottom:12px; display:flex; align-items:center; gap:8px;}
+.review-item{background:var(--glass); border:1px solid var(--glass-brd); border-radius:14px; padding:16px;
+  margin-bottom:10px; cursor:pointer;}
+.review-item .rq{font-size:13.5px; font-weight:600; line-height:1.55; direction:ltr; text-align:left;}
+.review-item .ra{display:none; margin-top:10px; border-top:1px solid var(--glass-brd); padding-top:10px;
+  direction:ltr; text-align:left;}
+.review-item.open .ra{display:block;}
+.review-item .ra .ans-sub{font-size:12.5px;}
+.review-item .ra p{font-size:12.5px; line-height:1.6; color:var(--txt-mid); margin:5px 0;}
+.review-item .ra ol{margin:5px 0; padding-left:18px;}
+.review-item .ra ol li{font-size:12.5px; line-height:1.55; margin-bottom:5px;}
+.review-item .ra ol li::marker{color:var(--navy); font-weight:700;}
+.empty-review{text-align:center; padding:30px 20px; color:var(--txt-lo); font-size:13.5px;}
+.footer-credit{text-align:center; padding:26px 0 calc(30px + env(safe-area-inset-bottom));
+  font-size:11.5px; color:var(--txt-lo); font-family:'JetBrains Mono',monospace;}
+.res-line{text-align:center; font-size:16px; line-height:2;}
+.res-line b{color:var(--navy);}
+table.res{width:100%; border-collapse:collapse; margin-top:12px; font-size:14px; background:#fff;}
+table.res td, table.res th{border:1px solid #C9D9E8; padding:8px; text-align:center;}
+table.res th{background:var(--navy); color:#fff;}
+footer{text-align:center; font-size:12px; color:var(--txt-mid); margin-top:26px; line-height:1.8;}
+footer b{color:var(--navy);}
+.hidden{display:none !important;}
+/* ---- fixed top strip: dua + rotating dhikr ---- */
+.top-strip{position:fixed; top:0; left:0; right:0; z-index:60;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:9px 14px;
+  background:linear-gradient(90deg, rgba(27,58,92,0.10), rgba(91,141,184,0.08));
+  border-bottom:1px solid var(--glass-brd);}
+.top-strip .dua{font-size:11px; color:var(--txt-mid); white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.top-strip .dua b{color:var(--navy);}
+.dhikr{font-size:11px; font-weight:700; color:var(--amber); white-space:nowrap; transition:opacity .45s; flex-shrink:0;}
+.dhikr.fade{opacity:0;}
+/* ---- requeue time chips ---- */
+.time-row{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;}
+.time-row.disabled{opacity:0.3; pointer-events:none;}
+.time-chip{background:rgba(27,58,92,0.03); border:1px solid var(--glass-brd); border-radius:999px;
+  padding:8px 16px; font-size:12.5px; color:var(--txt-mid); cursor:pointer; transition:.15s;
+  font-family:'JetBrains Mono',monospace;}
+.time-chip.active{background:var(--sky-dim); border-color:var(--sky); color:var(--txt-hi);}
+/* ---- missed bin ---- */
+.missed-bin{display:flex; align-items:center; justify-content:space-between; gap:10px;
+  background:linear-gradient(90deg, rgba(138,109,0,0.10), rgba(179,38,30,0.06));
+  border:1px solid rgba(138,109,0,0.35); border-radius:var(--radius-sm);
+  padding:14px 16px; margin-bottom:12px;}
+.missed-bin b{font-size:13.5px; display:block;}
+.missed-bin span{font-size:11.5px; color:var(--txt-lo); font-family:'JetBrains Mono',monospace;}
+.toast{position:fixed; bottom:110px; left:50%; transform:translateX(-50%) translateY(10px); z-index:70;
+  background:rgba(27,58,92,0.95); border:1px solid var(--navy); color:#fff;
+  font-size:13px; font-weight:600; padding:10px 20px; border-radius:999px;
+  opacity:0; pointer-events:none; transition:.3s; white-space:nowrap;}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-thumb{background:rgba(27,58,92,0.20); border-radius:99px;}
+@media (max-width:400px){
+  .fc-front .qtitle{font-size:16.5px;}
+  .hero h1{font-size:22px;}
+}
+
+.brand-signature{font-family:'Great Vibes',cursive;font-size:40px;line-height:1.2;
+  text-align:center;color:#1B3A5C;padding:14px 10px 2px;position:relative;z-index:2;
+  text-shadow:0 2px 18px rgba(91,141,184,.35);}
+.brand-sub{text-align:center;font-size:11px;color:var(--txt-lo);letter-spacing:2px;
+  position:relative;z-index:2;padding-bottom:4px;}
+.watermark{position:fixed;inset:0;z-index:999;pointer-events:none;display:flex;
+  align-items:center;justify-content:center;overflow:hidden;}
+.watermark span{font-family:'Great Vibes',cursive;font-size:72px;color:rgba(27,58,92,.055);
+  transform:rotate(-28deg);white-space:nowrap;user-select:none;}
+.ans-box{border:1px solid rgba(27,58,92,.35);background:rgba(27,58,92,.05);
+  border-radius:14px;padding:16px 18px;}
+.ans-label{font-size:13px;font-weight:800;color:var(--navy);margin-bottom:10px;}
+.fc-back{overflow-y:auto;}
+@media(max-width:520px){.brand-signature{font-size:32px}.watermark span{font-size:48px}}
+/* O.Nursing — QR-only: no copying, no printing */
+body{ -webkit-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; }
+textarea, input{ -webkit-user-select:text; -moz-user-select:text; -ms-user-select:text; user-select:text; }
+#print-note{ display:none; }
+@media print{ body *{ display:none !important; } #print-note{ display:block !important; text-align:center; font-size:16px; font-weight:700; color:#1B3A5C; margin-top:40%; } }
+
+</style>
+</head>
+<body>
+
+<div class="bg-pulse">
+  <svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
+    <g class="giant-target" transform="translate(200,400)">
+      <circle r="230" fill="#1B3A5C" opacity="0.04"/>
+      <circle r="230" fill="none" stroke="#1B3A5C" stroke-width="2" opacity="0.14"/>
+      <circle r="184" fill="#5B8DB8" opacity="0.05"/>
+      <circle r="184" fill="none" stroke="#5B8DB8" stroke-width="2" opacity="0.18"/>
+      <circle r="138" fill="#1B3A5C" opacity="0.05"/>
+      <circle r="138" fill="none" stroke="#1B3A5C" stroke-width="2" opacity="0.16"/>
+      <circle r="92" fill="#5B8DB8" opacity="0.06"/>
+      <circle r="92" fill="none" stroke="#5B8DB8" stroke-width="2" opacity="0.20"/>
+      <circle r="46" fill="#1B3A5C" opacity="0.06"/>
+      <circle r="46" fill="none" stroke="#1B3A5C" stroke-width="2" opacity="0.20"/>
+      <circle r="14" fill="#1B3A5C" opacity="0.35"/>
+      <g class="target-spin">
+        <circle r="255" fill="none" stroke="#5B8DB8" stroke-width="1.5" stroke-dasharray="4 14" opacity="0.20"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<div class="top-strip">
+  <span class="dhikr" id="dhikr">سبحان الله وبحمده</span>
+  <span class="dua">لا تنسوا الدعاء لنا ولوالدينا — <b>بالتوفيق 🤲</b></span>
+</div>
+
+<div class="watermark"><span>O.Nursing</span></div>
+
+<!-- v2 timer time-up card host: FIRST .wrap in the document, OUTSIDE the
+     screens, so the snippet's card stays visible when the quiz screen is hidden on expiry -->
+<div class="wrap" id="tq-host"></div>
+
+<div class="app">
+  <div class="brand-signature">O.Nursing</div>
+  <div class="brand-sub">SPECIAL NOTES • MODULE 2</div>
+
+  <!-- =============== HOME =============== -->
+  <section id="screen-home" class="screen active">
+    <div class="wrap">
+      <div id="home">
+        <div class="topbar">
+          <div class="brand">
+            <div class="brand-mark">🩺</div>
+            <div class="brand-text">
+              <b>Special Notes — Module 2</b>
+              <span>Normal and Abnormal Pregnancy • Maternity</span>
+            </div>
+          </div>
+          <button class="pill-btn" id="btn-reset-all">مسح كل التقدم</button>
+        </div>
+
+        <div class="hero">
+          <h1>Module 2: <span class="accent">Normal and Abnormal Pregnancy</span></h1>
+          <p>Special Notes — Module 2 • تمريض النسا والتوليد — اختبار موقوت (36 سؤال) + بطاقات مراجعة (130 بطاقة)</p>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-chip navy">
+            <div class="n" id="stat-total">36</div>
+            <div class="l">سؤال اختبار</div>
+          </div>
+          <div class="stat-chip sky">
+            <div class="n" id="stat-topics">130</div>
+            <div class="l">بطاقة مراجعة</div>
+          </div>
+          <div class="stat-chip green">
+            <div class="n" id="stat-known">0%</div>
+            <div class="l">بطاقات عارفها</div>
+          </div>
+        </div>
+
+        <div class="section-label">
+          <span>اختار الأقسام للبدء</span>
+          <button class="sel-all" id="btn-select-all">اختار الكل</button>
+        </div>
+
+        <div class="missed-bin" id="missed-bin">
+          <div><b>⭐ البطاقات اللي مش عارفها</b><span id="missed-count"></span></div>
+          <button class="pill-btn" id="btn-review-missed">مراجعة سريعة</button>
+        </div>
+
+        <div class="topic-list" id="topic-list"></div>
+
+        <div class="legend"><b>مصادر الأسئلة:</b> كل سؤال مكتوب عليه مصدره —
+          <span class="srctag">البنك المشترك</span> نسخة موحدة من بنوك المنصورة وبنك 2024 وبنك طه حسني (المحلولة) وبنك بنها والأسئلة الاسترشادية •
+          <span class="srctag">بنك الإسكندرية 2023/2024</span> د. ميرفت خضراوي •
+          <span class="srctag">بنك طنطا 2021/2022</span> •
+          <span class="srctag">امتحانات بورسعيد 2025/2026</span> •
+          <span class="srctag">بنك إمبابة</span> •
+          <span class="srctag">بنك السس</span> مراجعة وأسئلة عبدو السس •
+          <span class="srctag">امتحانات الدور الثاني</span> امتحانات السنوات السابقة •
+          <span class="srctag special">Special O.Nursing Questions</span>
+        </div>
+
+        <div class="levels" id="levels">
+          <button class="lvl on" data-lvl="all">الكل (36)</button>
+          <button class="lvl" data-lvl="easy">سهل (20)</button>
+          <button class="lvl" data-lvl="med">متوسط (15)</button>
+          <button class="lvl" data-lvl="hard">صعب (1)</button>
+        </div>
+
+        <p style="margin-top:12px; font-size:14.5px; line-height:1.9;">أسئلة شاملة كل أفكار الموديول الثاني: التغيرات الفسيولوجية أثناء الحمل وعلامات الحمل، والرعاية التمريضية أثناء الحمل وزيارات ما قبل الولادة، والحمل عالي الخطورة (اضطرابات ارتفاع الضغط: ما قبل تسمم الحمل والتسمم الحملي)، والنزيف في بداية الحمل (الإجهاض والحمل العنقودي والحمل خارج الرحم) وفي نهايته (المشيمة المنزاحة وانفصال المشيمة) — مع <b>تلميح</b> لكل سؤال وشرح بعد الإجابة. تحت الاختبار هتلاقي <b>بطاقات المراجعة</b> (تعريفات ووظائف وقوائم ومقالات ومقارنات) و<b>أسئلة Special O.Nursing Questions</b>.</p>
+        <div class="small" id="home-stats"></div>
+        <button class="btn ghost hidden" id="btn-resume">كمّل من حيث توقفت</button>
+
+        <footer>O.Nursing • Dr: Abdullah Shawky<br>الأسئلة من محتوى المحاضرة وأسئلة امتحانات دبلوم المعاهد الفنية الصحية<br><b>الأسئلة خاصة بـ O.Nursing — ممنوع النسخ والنقل</b></footer>
+        <div style="height:260px"></div>
+      </div>
+    </div>
+
+    <div class="floating-bar">
+      <div class="wrap floating-bar-inner">
+        <span class="sel-count" id="sel-count">4 أقسام محددة</span>
+        <button class="btn-primary" id="btn-start">
+          ابدأ
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== SETTINGS =============== -->
+  <section id="screen-settings" class="screen">
+    <div class="wrap">
+      <div class="topbar">
+        <button class="pill-btn" id="btn-back-home">‹ رجوع للرئيسية</button>
+      </div>
+
+      <div class="hero" style="padding-top:6px;">
+        <h1 style="font-size:21px;">قبل ما تبدأ</h1>
+        <p id="settings-subtitle">ظبط إعدادات جلسة المذاكرة</p>
+      </div>
+
+      <div class="settings-card">
+        <div class="progress-summary">
+          <div class="ring-big">
+            <svg viewBox="0 0 56 56">
+              <circle class="bg-ring" cx="28" cy="28" r="24"/>
+              <circle class="fg-ring" id="settings-ring" cx="28" cy="28" r="24"/>
+            </svg>
+            <div class="pct" id="settings-pct">0%</div>
+          </div>
+          <div class="progress-text">
+            <b id="settings-progress-txt">0 من 0 بطاقة معروفة</b>
+            <span id="settings-progress-sub">التقدم المحفوظ لهذا الاختيار</span>
+          </div>
+          <button class="clear-progress" id="btn-clear-selection-progress">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 012-2h4a2 2 0 012 2v2m3 0l-1 14a2 2 0 01-2 2H7a2 2 0 01-2-2L4 6"/></svg>
+            امسح التقدم
+          </button>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <h3><span class="num">1</span> ابدأ بـ</h3>
+        <div class="opt-grid">
+          <div class="opt-btn active" data-group="scope" data-val="all">كل البطاقات</div>
+          <div class="opt-btn" data-group="scope" data-val="unknown">اللي مش عارفها بس</div>
+        </div>
+        <div class="queue-note" id="queue-note"></div>
+      </div>
+
+      <div class="settings-card">
+        <h3><span class="num">2</span> ترتيب البطاقات</h3>
+        <div class="opt-grid">
+          <div class="opt-btn active" data-group="shuffle" data-val="off">بالترتيب</div>
+          <div class="opt-btn" data-group="shuffle" data-val="on">عشوائي 🔀</div>
+        </div>
+      </div>
+
+      <div class="settings-card">
+        <h3><span class="num">3</span> إعادة عرض البطاقة الغلط</h3>
+        <div class="opt-grid">
+          <div class="opt-btn active" data-group="requeue" data-val="none">من غير إعادة</div>
+          <div class="opt-btn" data-group="requeue" data-val="time">بعد مدة معينة</div>
+          <div class="opt-btn" data-group="requeue" data-val="end" style="grid-column:1/3;">بعد ما البطاقات تخلص</div>
+        </div>
+        <div class="time-row disabled" id="requeue-time-row">
+          <div class="time-chip" data-mins="1">1 دقيقة</div>
+          <div class="time-chip active" data-mins="3">3 دقايق</div>
+          <div class="time-chip" data-mins="5">5 دقايق</div>
+          <div class="time-chip" data-mins="10">10 دقايق</div>
+        </div>
+      </div>
+
+      <div style="height:100px;"></div>
+    </div>
+
+    <div class="floating-bar">
+      <div class="wrap">
+        <button class="btn-primary" id="btn-start-study" style="width:100%;">
+          ابدأ المذاكرة 🩺
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== STUDY (flashcards) =============== -->
+  <section id="screen-study" class="screen">
+    <div class="wrap" style="flex:1; display:flex; flex-direction:column;">
+      <div class="study-header">
+        <div class="exit-btn" id="btn-exit-study">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </div>
+        <div class="qbar-track"><div class="qbar-fill" id="qbar-fill"></div></div>
+        <div class="qcounter" id="qcounter">1 / 1</div>
+      </div>
+
+      <div class="card-meta">
+        <span class="card-sec" id="card-sec">SECTION</span>
+        <span class="ext-star hidden" id="card-ext">★ تكملة من خارج الملف</span>
+        <span class="review-badge hidden" id="card-review">🔁 مراجعة</span>
+        <span class="known-badge hidden" id="card-known">✓ عارفها</span>
+      </div>
+
+      <div class="flashcard" id="flashcard">
+        <div class="fc-inner">
+          <div class="fc-face fc-front">
+            <div class="qnum" id="fc-qnum">Q1</div>
+            <div class="qtitle" id="fc-qtitle">Question</div>
+            <div class="fc-src" id="fc-src"></div>
+            <div class="tap-hint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M4 10a8 8 0 0114-5M20 14a8 8 0 01-14 5"/></svg>
+              دوس على الكارت عشان تشوف الإجابة
+            </div>
+          </div>
+          <div class="fc-face fc-back" id="fc-answer"></div>
+        </div>
+      </div>
+
+      <div class="mark-row hidden" id="mark-row">
+        <button class="mark-btn dunno" id="btn-dunno">✗ لسه مش عارفها</button>
+        <button class="mark-btn know" id="btn-know">✓ عارفها</button>
+      </div>
+
+      <div class="study-nav">
+        <button class="nav-btn" id="btn-prev">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+          اللي قبله
+        </button>
+        <button class="nav-btn" id="btn-shuffle" title="خلط البطاقات المتبقية">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
+          خلط
+        </button>
+        <button class="nav-btn" id="btn-next-card">
+          اللي بعده
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== SUMMARY (flashcards) =============== -->
+  <section id="screen-summary" class="screen">
+    <div class="wrap">
+      <div class="topbar">
+        <button class="pill-btn" id="btn-summary-exit">‹ خروج</button>
+      </div>
+
+      <div class="results-hero">
+        <div class="results-ring">
+          <svg viewBox="0 0 150 150">
+            <circle class="bg-ring" cx="75" cy="75" r="65"/>
+            <circle class="fg-ring" id="results-ring" cx="75" cy="75" r="65"/>
+          </svg>
+          <div class="pct-big">
+            <b id="results-pct">0%</b>
+            <span>نسبة البطاقات اللي عارفها</span>
+          </div>
+        </div>
+        <h2 id="results-title">خلصت الجلسة 🎉</h2>
+        <p id="results-sub">راجع البطاقات اللي لسه مش عارفها تحت</p>
+      </div>
+
+      <div class="results-stats">
+        <div class="rstat known">
+          <div class="n" id="results-known">0</div>
+          <div class="l">عارفها</div>
+        </div>
+        <div class="rstat unknown">
+          <div class="n" id="results-unknown">0</div>
+          <div class="l">مش عارفها</div>
+        </div>
+        <div class="rstat">
+          <div class="n" id="results-total">0</div>
+          <div class="l">إجمالي</div>
+        </div>
+      </div>
+
+      <div class="results-actions">
+        <button class="nav-btn" id="btn-retry-unknown">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M4 10a8 8 0 0114-5M20 14a8 8 0 01-14 5"/></svg>
+          ذاكر اللي مش عارفها
+        </button>
+        <button class="nav-btn" id="btn-go-home-2">🏠 الرئيسية</button>
+      </div>
+
+      <div class="review-section">
+        <h3>البطاقات اللي لسه مش عارفها — دوس عشان تشوف الإجابة</h3>
+        <div id="review-list"></div>
+      </div>
+
+      <div class="footer-credit">O.Nursing • Dr. Abdullah Shawky</div>
+    </div>
+  </section>
+
+  <!-- =============== QUIZ (scored MCQ + True/False, same flip-card design) =============== -->
+  <section id="quiz" class="screen">
+    <div class="wrap" style="flex:1; display:flex; flex-direction:column;">
+      <div class="study-header">
+        <div class="exit-btn" id="btn-quiz-exit">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </div>
+        <div class="qbar-track"><div class="qbar-fill" id="prog-fill"></div></div>
+        <div class="qcounter" id="q-count">1 / 36</div>
+      </div>
+
+      <div class="card-meta">
+        <span class="card-sec" id="quiz-sec">MCQ</span>
+        <span id="q-badge"></span>
+        <span class="qcounter" id="q-score">صح: 0 / 0</span>
+      </div>
+
+      <div class="flashcard quiz-card" id="quiz-card">
+        <div class="fc-inner" id="quiz-inner">
+          <div class="fc-face fc-front quiz-front">
+            <div class="qnum" id="quiz-qnum">M4</div>
+            <div class="q" id="q-stem"></div>
+            <div class="qsrc" id="q-src"></div>
+            <div id="q-body"></div>
+            <button class="hintbtn" id="btn-hint">💡 تلميح</button>
+            <div class="hint" id="q-hint"></div>
+            <div class="tap-hint">اختار إجابة — وبعدها الكارت هيتقلب ويظهر الشرح</div>
+          </div>
+          <div class="fc-face fc-back quiz-back">
+            <div class="ans-box">
+              <div class="ans-label">الشرح</div>
+              <div class="explain" id="q-explain"></div>
+              <div class="model" id="q-model"></div>
+            </div>
+            <div class="tap-hint">اضغط على الكارت للرجوع للسؤال</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="study-nav">
+        <button class="nav-btn hidden" id="btn-next">السؤال التالي ←</button>
+        <button class="nav-btn hidden" id="btn-finish">عرض النتيجة</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============== RESULTS (scored) =============== -->
+  <section id="results" class="screen">
+    <div class="wrap">
+      <div class="topbar">
+        <button class="pill-btn" id="btn-home">‹ رجوع للموديول الثاني</button>
+      </div>
+
+      <div class="results-hero">
+        <div class="results-ring">
+          <svg viewBox="0 0 150 150">
+            <circle class="bg-ring" cx="75" cy="75" r="65"/>
+            <circle class="fg-ring" id="ring-fg" cx="75" cy="75" r="65" stroke-dasharray="408" stroke-dashoffset="408"/>
+          </svg>
+          <div class="pct-big">
+            <b id="res-pct">0%</b>
+            <span>النتيجة</span>
+          </div>
+        </div>
+        <h2>النتيجة</h2>
+        <div class="res-line" id="res-line"></div>
+      </div>
+
+      <table class="res" id="res-table"></table>
+
+      <div class="results-actions" style="margin-top:16px;">
+        <button class="nav-btn" id="btn-retry">إعادة الأسئلة</button>
+      </div>
+
+      <div class="footer-credit">O.Nursing • Dr. Abdullah Shawky</div>
+    </div>
+  </section>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1B3A5C"/>
+      <stop offset="100%" stop-color="#5B8DB8"/>
+    </linearGradient>
+    <linearGradient id="ringGradBig" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1B3A5C"/>
+      <stop offset="100%" stop-color="#5B8DB8"/>
+    </linearGradient>
+  </defs>
+</svg>
+<div id="print-note">الأسئلة خاصة بـ O.Nursing — ممنوع النسخ والنقل</div>
+
+<script>
+const QUESTIONS = [
+ {
+  "id": "M5",
+  "level": "easy",
+  "type": "mcq",
+  "q": "The uterus may be higher than expected due to:",
+  "options": [
+   "Oligohydramnios",
+   "Intrauterine growth retardation",
+   "Multiple pregnancy"
+  ],
+  "correct": 2,
+  "hint": "What makes the uterus bigger than the dates say?",
+  "explain": "The uterus is higher than expected in <b>multiple pregnancy</b> — more than one fetus makes the uterus larger than expected for the gestational age.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "M7",
+  "level": "med",
+  "type": "mcq",
+  "q": "All of the following are positive signs of pregnancy except:",
+  "options": [
+   "Palpate fetal parts",
+   "Hearing FHS",
+   "Amenorrhea",
+   "Felt fetal movement"
+  ],
+  "correct": 2,
+  "hint": "Which one is only a presumptive sign?",
+  "explain": "<b>Amenorrhea</b> is a presumptive sign of pregnancy, not a positive one. The positive (sure) signs are visualization of the fetal sac by ultrasound, hearing the fetal heart sound, felt fetal movement, and palpating fetal parts.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "M9",
+  "level": "med",
+  "type": "mcq",
+  "q": "Complication of vesicular (hydatidiform) mole includes all of the following except:",
+  "options": [
+   "Hemorrhage",
+   "Perforation",
+   "Choriocarcinoma",
+   "Cord prolapse"
+  ],
+  "correct": 3,
+  "hint": "Which complication belongs to labour, not to a mole?",
+  "explain": "Complications of vesicular mole are hemorrhage, shock, perforation, uterine sepsis and choriocarcinoma. <b>Cord prolapse</b> is not a complication of a molar pregnancy.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "M12",
+  "level": "easy",
+  "type": "mcq",
+  "q": "Gross malformation of trophoplast in which chorionic villi proliferate and become avascular is:",
+  "options": [
+   "Quickening",
+   "Hydatidiform mole",
+   "Ectopic pregnancy"
+  ],
+  "correct": 1,
+  "hint": "Which condition is a malformation of the trophoblast?",
+  "explain": "<b>Hydatidiform (vesicular) mole</b> is a gross malformation of the trophoblast in which the chorionic villi proliferate and become avascular.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "M19",
+  "level": "easy",
+  "type": "mcq",
+  "q": "One of the following is not a cause of bleeding in early pregnancy:",
+  "options": [
+   "Abortion",
+   "Ectopic pregnancy",
+   "Abruptio placenta (accidental hemorrhage)",
+   "Hydatidiform mole (vesicular mole)"
+  ],
+  "correct": 2,
+  "hint": "Which one bleeds late, not early?",
+  "explain": "Causes of bleeding in early pregnancy (before 20 weeks) are abortion, vesicular mole, ectopic pregnancy and local lesions. <b>Abruptio placenta</b> is a cause of bleeding in late pregnancy.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "M20",
+  "level": "med",
+  "type": "mcq",
+  "q": "All the following are maternal causes of abortion except:",
+  "options": [
+   "Drug intake during pregnancy",
+   "Rh and AB-O incompatibility",
+   "Chromosomal anomalies",
+   "Uterine malformation"
+  ],
+  "correct": 2,
+  "hint": "Which cause comes from the fetus, not the mother?",
+  "explain": "<b>Chromosomal anomalies</b> are a fetal cause of abortion. Maternal causes include infections, chronic nephritis, tuberculosis, drugs, Rh/ABO incompatibility, incompetent cervix, uterine malformation, fibroid, adhesions, trauma, criminal interference and endocrine disorders.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "M22",
+  "level": "hard",
+  "type": "mcq",
+  "q": "After evacuation of hydatidiform mole, if HCG levels remain more than five international units per liter eight weeks postpartum, it indicates to give:",
+  "options": [
+   "Prophylactic antibiotic",
+   "Anti-hypertensive",
+   "Prophylactic chemotherapy",
+   "Anti-convulsion"
+  ],
+  "correct": 2,
+  "hint": "What follows a molar evacuation when HCG stays high?",
+  "explain": "After evacuation of a hydatidiform mole, HCG is monitored for 2 years; if HCG is more than 5 IU/L 8 weeks postpartum, <b>prophylactic chemotherapy</b> is given.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "M25",
+  "level": "med",
+  "type": "mcq",
+  "q": "The weight of non-gravida uterus ranges from:",
+  "options": [
+   "900-1000 gm",
+   "50-60 gm",
+   "20-30 gm",
+   "80-90 gm"
+  ],
+  "correct": 1,
+  "hint": "How much does the uterus weigh before pregnancy?",
+  "explain": "The weight of the non-gravida uterus is <b>50–60 gm</b>; during pregnancy it increases from 60 gm to 1000 gm.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "M28",
+  "level": "easy",
+  "type": "mcq",
+  "q": "All of the following are positive signs of pregnancy except:",
+  "options": [
+   "Quickening",
+   "Felt fetal movement",
+   "Visualization of fetal sac",
+   "Palpate fetal part"
+  ],
+  "correct": 0,
+  "hint": "Which one is only a presumptive sign?",
+  "explain": "<b>Quickening</b> — the first time the mother feels fetal movement — is a presumptive sign, not a positive one. The positive signs are visualization of the fetal sac by ultrasound, hearing the fetal heart sound, felt fetal movement, and palpating fetal parts.",
+  "src": "بنك إمبابة"
+ },
+ {
+  "id": "M30",
+  "level": "easy",
+  "type": "mcq",
+  "q": "Which of the following is the normal symptom of pregnancy in the 1st trimester:",
+  "options": [
+   "Dyspnea",
+   "Fetal movement",
+   "Palpation of fetal parts",
+   "Nausea and vomiting"
+  ],
+  "correct": 3,
+  "hint": "What is morning sickness?",
+  "explain": "<b>Nausea and vomiting</b> (morning sickness) is the normal symptom of pregnancy in the first trimester; it is due to HCG.",
+  "src": "بنك إمبابة"
+ },
+ {
+  "id": "M37",
+  "level": "med",
+  "type": "mcq",
+  "q": "Physiological anemia in pregnancy is due to:",
+  "options": [
+   "Decreased intestinal iron absorption",
+   "Increased iron absorption",
+   "Decreased RBC production",
+   "Hemodilution due to increased plasma"
+  ],
+  "correct": 3,
+  "hint": "What grows faster — plasma or red cells?",
+  "explain": "Physiological anemia in pregnancy is due to <b>hemodilution</b>: the increase in plasma volume is greater than the increase in red blood cells, so haemoglobin, haematocrit and red cells fall.",
+  "src": "بنك السس"
+ },
+ {
+  "id": "M39",
+  "level": "med",
+  "type": "mcq",
+  "q": "In mild preeclampsia the hypertension is:",
+  "options": [
+   "More than 160/110",
+   "Less than 120/80",
+   "Not reaching 160/110"
+  ],
+  "correct": 2,
+  "hint": "Mild means it does not reach the severe level — which level?",
+  "explain": "In mild pre-eclampsia the hypertension does <b>not reach 160/110 mmHg</b> after 20 weeks, with proteinuria 1+ on dipstick (300 mg/24 hrs). Severe pre-eclampsia is BP ≥160/110 mmHg.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T3",
+  "level": "easy",
+  "type": "tf",
+  "q": "Goodell's signs is bluish discoloration",
+  "correct": false,
+  "hint": "What is Goodell's sign really?",
+  "explain": "FALSE — Goodell's sign is softening of the cervix, uterus and vagina. The bluish discoloration of the cervix, vagina and labia is Chadwick's sign.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T6",
+  "level": "easy",
+  "type": "tf",
+  "q": "Ballottement is bouncing of the fetus",
+  "correct": true,
+  "hint": "What does ballottement mean?",
+  "explain": "TRUE — ballottement is bouncing of the fetus (fetal movement in the amniotic fluid).",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T7",
+  "level": "med",
+  "type": "tf",
+  "q": "Normal fetal movement is 10 movements within 24hrs",
+  "correct": false,
+  "hint": "In how many hours — 24 or 12?",
+  "explain": "FALSE — the fetal kick count is at least 10 movements in 12 hours. Absence of fetal movement precedes intrauterine fetal death by 48 hours.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T8",
+  "level": "med",
+  "type": "tf",
+  "q": "Signs of fetal distress include epigastric pain",
+  "correct": false,
+  "hint": "Whose symptom is epigastric pain — mother or fetus?",
+  "explain": "FALSE — epigastric pain is a maternal symptom of pre-eclampsia, not a sign of fetal distress.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T9",
+  "level": "easy",
+  "type": "tf",
+  "q": "Fetal hypoxia may lead to abortion",
+  "correct": true,
+  "hint": "Is hypoxia listed among the fetal causes?",
+  "explain": "TRUE — fetal causes of abortion are chromosomal anomalies, diseases of the fertilized ovum, and hypoxia.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T11",
+  "level": "easy",
+  "type": "tf",
+  "q": "Hegar's sign is softening of the vagina",
+  "correct": false,
+  "hint": "Which part softens in Hegar's sign?",
+  "explain": "FALSE — Hegar's sign is softening of the lower uterine segment (6–12 weeks). Softening of the cervix and vagina is Goodell's sign.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T13",
+  "level": "med",
+  "type": "tf",
+  "q": "Cervix was full dilated in threatened abortion",
+  "correct": false,
+  "hint": "Is the os open or closed in a threatened abortion?",
+  "explain": "FALSE — in threatened abortion the cervical os is closed and the membranes are intact; ultrasound shows a viable fetus. A fully dilated os is seen in inevitable abortion.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T15",
+  "level": "med",
+  "type": "tf",
+  "q": "Multi gravid feels fetal movement between 18 and 20 weeks",
+  "correct": false,
+  "hint": "Who feels it at 18–20 weeks — primigravida or multigravida?",
+  "explain": "FALSE — quickening occurs at 18–20 weeks in primigravida and at 16–18 weeks in multigravida.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T18",
+  "level": "easy",
+  "type": "tf",
+  "q": "Colostrums' is present in greater or lesser amount in 2 trimester",
+  "correct": false,
+  "hint": "In which trimester is colostrum secreted especially?",
+  "explain": "FALSE — colostrum, the yellowish breast fluid, is secreted especially in the 3rd trimester.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T20",
+  "level": "med",
+  "type": "tf",
+  "q": "Frequency of micturation is not common symptoms of early pregnancy",
+  "correct": false,
+  "hint": "Is urinary frequency a presumptive sign?",
+  "explain": "FALSE — frequency of micturition is a common symptom of early pregnancy and a presumptive sign; it is due to pressure of the uterus on the bladder.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T21",
+  "level": "med",
+  "type": "tf",
+  "q": "Inevitable abortion bleeding had offensive odor",
+  "correct": false,
+  "hint": "Which type of abortion has offensive bleeding?",
+  "explain": "FALSE — offensive bleeding with a tender painful uterus, high temperature and rapid pulse is septic abortion, not inevitable abortion.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T23",
+  "level": "easy",
+  "type": "tf",
+  "q": "Placenta previa normal situated placenta",
+  "correct": false,
+  "hint": "Where is the placenta in previa — upper or lower segment?",
+  "explain": "FALSE — placenta previa is an abnormally situated placenta in the lower uterine segment. The normal site of the placenta is the upper uterine segment.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T26",
+  "level": "easy",
+  "type": "tf",
+  "q": "Cholosma is brownish pigmentation of the face",
+  "correct": true,
+  "hint": "What is the mask of pregnancy?",
+  "explain": "TRUE — cholosma (chloasma), the mask of pregnancy, is brownish pigmentation of the face.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T34",
+  "level": "easy",
+  "type": "tf",
+  "q": "In threatened abortion ultra sound shows viable fetus",
+  "correct": true,
+  "hint": "What does the ultrasound show when the abortion is only threatened?",
+  "explain": "TRUE — in threatened abortion ultrasound shows a viable fetus, the cervical os is closed and the membranes are intact.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T55",
+  "level": "easy",
+  "type": "tf",
+  "q": "Placenta is completely formed and functioning from 10–12 weeks after fertilization",
+  "correct": true,
+  "hint": "When is the placenta completely formed?",
+  "explain": "TRUE — the placenta is completely formed and functioning from 10–12 weeks after fertilization; the ovaries produce estrogen and progesterone until 10–12 weeks, then the placenta takes over.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "T57",
+  "level": "med",
+  "type": "tf",
+  "q": "Fundus at umbilical level by 36 weeks",
+  "correct": false,
+  "hint": "At which week is the fundus at the umbilicus — 24 or 36?",
+  "explain": "FALSE — the fundus is at the umbilical level at 24 weeks. At 36 weeks it is at the xiphoid process.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "T59",
+  "level": "easy",
+  "type": "tf",
+  "q": "Maternal surface of the placenta is white's shiny appearance",
+  "correct": false,
+  "hint": "Which surface is white and shiny — maternal or fetal?",
+  "explain": "FALSE — the fetal surface of the placenta is white and shiny, not the maternal surface.",
+  "src": "بنك طنطا 2021/2022"
+ },
+ {
+  "id": "T60",
+  "level": "easy",
+  "type": "tf",
+  "q": "Fetal surface of the placenta is white and shiny appearance",
+  "correct": true,
+  "hint": "Which surface is white and shiny?",
+  "explain": "TRUE — the fetal surface of the placenta is white and shiny.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T61",
+  "level": "med",
+  "type": "tf",
+  "q": "Amenorrhea indicates a positive sign of pregnancy",
+  "correct": false,
+  "hint": "Presumptive or positive?",
+  "explain": "FALSE — amenorrhea (absence of menstruation) is a presumptive sign of pregnancy, not a positive one.",
+  "src": "بنك طنطا 2021/2022"
+ },
+ {
+  "id": "T65",
+  "level": "easy",
+  "type": "tf",
+  "q": "Chadwick's sign is a violet discoloration of the cervix, vagina and labia",
+  "correct": true,
+  "hint": "What color change is Chadwick's sign?",
+  "explain": "TRUE — Chadwick's sign is the bluish/violet discoloration of the cervix, vagina and labia in early pregnancy.",
+  "src": "بنك السس"
+ },
+ {
+  "id": "T69",
+  "level": "med",
+  "type": "tf",
+  "q": "Level of the fundus can be felt at the umbilical level by 36 weeks",
+  "correct": false,
+  "hint": "At which week is the fundus at the umbilicus?",
+  "explain": "FALSE — the fundus can be felt at the umbilical level at 24 weeks; by 36 weeks it is at the xiphoid process.",
+  "src": "بنك السس"
+ },
+ {
+  "id": "T76",
+  "level": "easy",
+  "type": "tf",
+  "q": "Quickening occurs between 18–20th week in PG",
+  "correct": true,
+  "hint": "When does a primigravida first feel fetal movement?",
+  "explain": "TRUE — quickening occurs between 18–20 weeks in primigravida (PG); in multigravida it is 16–18 weeks.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "T85",
+  "level": "easy",
+  "type": "tf",
+  "q": "Normal fetal movement is 10 movements within 12 hrs",
+  "correct": true,
+  "hint": "How many movements in how many hours?",
+  "explain": "TRUE — the normal fetal kick count is at least 10 movements within 12 hours.",
+  "src": "امتحانات الدور الثاني"
+ },
+ {
+  "id": "T88",
+  "level": "easy",
+  "type": "tf",
+  "q": "Signs of preeclampsia are hypertension, protenuria, and edema",
+  "correct": true,
+  "hint": "What are the three signs of pre-eclampsia?",
+  "explain": "TRUE — the signs of pre-eclampsia are hypertension (140/90 mmHg), proteinuria (≥300 mg/24 hours) and edema.",
+  "src": "امتحانات الدور الثاني"
+ },
+ {
+  "id": "D1",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Amenorrhea.",
+  "model": "Absence of menstruation.",
+  "hint": "What is missing?",
+  "explain": "Amenorrhea is the absence of menstruation.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D2",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Gravida.",
+  "model": "A woman who is pregnant (regardless of duration).",
+  "hint": "Who is a gravida?",
+  "explain": "A gravida is a woman who is pregnant, regardless of the duration of the pregnancy.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D3",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Primigravida.",
+  "model": "A woman pregnant for the first time.",
+  "hint": "First time pregnant — what is she called?",
+  "explain": "A primigravida is a woman pregnant for the first time.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D4",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Multigravida.",
+  "model": "A woman who is in her second or subsequent pregnancy.",
+  "hint": "Second pregnancy or more — what is she called?",
+  "explain": "A multigravida is a woman who is in her second or subsequent pregnancy.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D5",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Leucorrhea.",
+  "model": "Excessive / increase mucous discharge from the genital tract.",
+  "hint": "What discharge?",
+  "explain": "Leucorrhea is excessive mucous discharge from the genital tract.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D6",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Quickening.",
+  "model": "First time mother feels fetal movement.",
+  "hint": "What does the mother feel for the first time?",
+  "explain": "Quickening is the first time the mother feels fetal movement — at 18–20 weeks in primigravida and 16–18 weeks in multigravida.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D7",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Antenatal care.",
+  "model": "Care given to the pregnant woman by members of the health team from conception till delivery.",
+  "hint": "Care from when to when?",
+  "explain": "Antenatal care is care given to the pregnant woman by members of the health team from conception till delivery.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D8",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Multipara.",
+  "model": "A woman who delivered several times before / has given birth to two or more children.",
+  "hint": "Delivered several times — what is she called?",
+  "explain": "A multipara is a woman who delivered several times before, or has given birth to two or more children.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D9",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Cholosma (Chloasma).",
+  "model": "Brownish pigmentation of the face (\"mask of pregnancy\").",
+  "hint": "What is the mask of pregnancy?",
+  "explain": "Cholosma (chloasma) is brownish pigmentation of the face, called the mask of pregnancy.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D10",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Linea nigra.",
+  "model": "Dark line extending from umbilicus to symphysis pubis.",
+  "hint": "A dark line from where to where?",
+  "explain": "Linea nigra is a dark line extending from the umbilicus to the symphysis pubis.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D11",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Goodell's sign.",
+  "model": "Softening of the cervix, uterus and vagina.",
+  "hint": "Softening of what?",
+  "explain": "Goodell's sign is softening of the cervix, uterus and vagina in early pregnancy.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D12",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Chadwick's sign.",
+  "model": "Bluish discoloration of cervix, vagina and labia.",
+  "hint": "Bluish discoloration of what?",
+  "explain": "Chadwick's sign is bluish discoloration of the cervix, vagina and labia in early pregnancy.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D13",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Palmer sign.",
+  "model": "Intermittent uterine contraction early in pregnancy, detected by bimanual examination.\nNote: another bank defines Palmer sign as bluish discoloration of the cervix, vagina and labia — that is Chadwick's sign; the book's definition above is used (conflict C-1).",
+  "hint": "An intermittent contraction felt how?",
+  "explain": "Palmer sign is an intermittent uterine contraction early in pregnancy, detected by bimanual examination.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D14",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Gestational hypertension.",
+  "model": "New hypertension ≥140/90 mmHg at or after 20 weeks of gestation without proteinuria or other features of pre-eclampsia.",
+  "hint": "New hypertension after 20 weeks, without proteinuria — what is it?",
+  "explain": "Gestational hypertension is new hypertension ≥140/90 mmHg at or after 20 weeks of gestation without proteinuria or other features of pre-eclampsia.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D15",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: PIH (Pregnancy-induced hypertension).",
+  "model": "New arterial hypertension after 20 weeks of pregnancy; includes pre-eclampsia and eclampsia.\nNote: another bank defines PIH exactly like gestational hypertension (new hypertension after 20 weeks without proteinuria); the book's definition above is used (conflict C-2).",
+  "hint": "New arterial hypertension after 20 weeks — what does it include?",
+  "explain": "Pregnancy-induced hypertension (PIH) is new arterial hypertension after 20 weeks of pregnancy; it includes pre-eclampsia and eclampsia.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D16",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Preeclampsia.",
+  "model": "Hypertension + proteinuria after the 20th week of pregnancy; can occur in the days after birth.",
+  "hint": "Hypertension plus what, after which week?",
+  "explain": "Pre-eclampsia is hypertension + proteinuria after the 20th week of pregnancy; it can occur in the days after birth.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D17",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Eclampsia.",
+  "model": "Pre-eclampsia + convulsions (fits) and/or coma.",
+  "hint": "Pre-eclampsia plus what?",
+  "explain": "Eclampsia is pre-eclampsia + convulsions (fits) and/or coma.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D18",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Abortion.",
+  "model": "Termination of pregnancy before 24 weeks, or products of conception weighing below 500 grams.\nNote: some banks say before 20/21/17 weeks; the book's limit (before 24 weeks, or products below 500 g) is used (conflict C-3).",
+  "hint": "Termination before which week?",
+  "explain": "Abortion is termination of pregnancy before 24 weeks, or products of conception weighing below 500 grams. It occurs in 10–15% of pregnancies, 80% in the first trimester.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D19",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Missed abortion.",
+  "model": "Fetus dead and retained inside the uterus.",
+  "hint": "Dead fetus kept inside — what is it?",
+  "explain": "Missed abortion is a fetus dead and retained inside the uterus.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D20",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Threatened abortion.",
+  "model": "Attempt of the uterus to get rid of its contents.",
+  "hint": "The uterus tries to do what?",
+  "explain": "Threatened abortion is an attempt of the uterus to get rid of its contents.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D21",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Septic abortion.",
+  "model": "Any abortion complicated by infection (e.g. missed, criminal).",
+  "hint": "Abortion plus what?",
+  "explain": "Septic abortion is any abortion complicated by infection (e.g. missed, criminal).",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D22",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Vesicular mole (Hydatidiform mole).",
+  "model": "Gross malformation of the trophoblast; chorionic villi proliferate and become avascular.",
+  "hint": "Malformation of what, with which villi?",
+  "explain": "Vesicular (hydatidiform) mole is a gross malformation of the trophoblast; the chorionic villi proliferate and become avascular.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D23",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Ectopic pregnancy.",
+  "model": "Pregnancy outside the normal uterine cavity; 99% in the uterine tube.",
+  "hint": "Pregnancy outside the cavity — mostly where?",
+  "explain": "Ectopic pregnancy is pregnancy outside the normal uterine cavity; 99% in the uterine tube.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D24",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Placenta previa.",
+  "model": "Abnormally situated placenta in the lower uterine segment.",
+  "hint": "Placenta in the wrong place — where?",
+  "explain": "Placenta previa is an abnormally situated placenta in the lower uterine segment.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D25",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Abruptio placenta.",
+  "model": "Premature separation of a normally situated placenta.",
+  "hint": "Separation of which placenta?",
+  "explain": "Abruptio placenta is premature separation of a normally situated placenta.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D26",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Bleeding in early pregnancy.",
+  "model": "Bleeding before 20 weeks of gestation.",
+  "hint": "Bleeding before which week?",
+  "explain": "Bleeding in early pregnancy is bleeding before 20 weeks of gestation.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D27",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Bleeding late in pregnancy.",
+  "model": "Bleeding from the genital tract between the 28th week and the onset of labor.",
+  "hint": "Bleeding from which week to when?",
+  "explain": "Bleeding late in pregnancy is bleeding from the genital tract between the 28th week and the onset of labor.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D28",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Braxton Hicks contraction.",
+  "model": "Irregular, painless uterine contractions from the 3rd month; prepare the uterus for labor.",
+  "hint": "Irregular painless contractions from when?",
+  "explain": "Braxton Hicks contractions are irregular, painless uterine contractions appearing from the 3rd month; they prepare the uterus for labor.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D29",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Ballottement.",
+  "model": "Bouncing of the fetus.",
+  "hint": "What bounces?",
+  "explain": "Ballottement is bouncing of the fetus.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D30",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Striae gravidarum.",
+  "model": "Fine pinkish-white or gray lines due to stretching of the skin.",
+  "hint": "Lines due to what?",
+  "explain": "Striae gravidarum are fine pinkish-white or gray lines due to stretching of the skin.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D31",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Hegar's sign.",
+  "model": "Softening of the lower uterine segment (6–12 wks).",
+  "hint": "Softening of which part?",
+  "explain": "Hegar's sign is softening of the lower uterine segment, at 6–12 weeks.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D32",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Ptyalism.",
+  "model": "Increase of saliva.",
+  "hint": "Increase of what?",
+  "explain": "Ptyalism is increase of saliva.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D33",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Primipara.",
+  "model": "A woman who delivered for the first time.",
+  "hint": "Delivered once — what is she called?",
+  "explain": "A primipara is a woman who delivered for the first time.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D34",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Stillbirth.",
+  "model": "Fetus born dead after 20 weeks of gestation.\nNote: another bank says 'before 20 weeks'; the book's definition (after 20 weeks) is used (conflict C-15).",
+  "hint": "Born dead after which week?",
+  "explain": "Stillbirth is a fetus born dead after 20 weeks of gestation.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D35",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Hypertrophy & hyperplasia of uterus.",
+  "model": "Hypertrophy = increase size of pre-existing muscle cell; hyperplasia = formation of a new cell. Enlargement of the uterus is due to hypertrophy and hyperplasia of muscle cells.",
+  "hint": "Bigger cells or more cells?",
+  "explain": "Hypertrophy is increase in size of a pre-existing muscle cell; hyperplasia is formation of a new cell.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D36",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Colostrum.",
+  "model": "Yellowish breast fluid secreted especially in the 3rd trimester.",
+  "hint": "Yellowish fluid, especially when?",
+  "explain": "Colostrum is a yellowish breast fluid secreted especially in the 3rd trimester.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D37",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Diet during pregnancy.",
+  "model": "Balanced diet; calcium from milk and eggs; iron from red meat and offal (liver); vitamin C (fresh fruits and vegetables) aids iron absorption; high-fiber foods prevent constipation; salt restricted in edema.",
+  "hint": "What should the diet contain?",
+  "explain": "Diet in pregnancy is a balanced diet: calcium from milk and eggs, iron from red meat and offal, vitamin C from fresh fruits and vegetables (it aids iron absorption), and high-fiber foods to prevent constipation.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D38",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Leg examination during pregnancy.",
+  "model": "Examination of the legs for edema and varicose veins.",
+  "hint": "What do we look for in the legs?",
+  "explain": "Leg examination during pregnancy is examination of the legs for edema and varicose veins.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D39",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Investigation during pregnancy.",
+  "model": "Urine (protein, glucose, ketones); stool examination; blood — CBC (Hb 11–12 g/dl; RBC 3,600,000–4,700,000/mm³; WBC increased, especially neutrophils >70%; coagulation time 12 min → 8 min); blood group ABO and Rh; random blood glucose 80–120 mg/100 ml; Hb repeated at 36 weeks and every 4 weeks if Hb <9 g/dl.",
+  "hint": "Which investigations?",
+  "explain": "Investigations during pregnancy are urine, stool, CBC, blood group ABO and Rh, and random blood glucose 80–120 mg/100 ml.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D40",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Danger signs.",
+  "model": "Persistent vomiting; vaginal bleeding; severe headache; blurring of vision; chills or fever; severe persistent abdominal pain; marked changes in fetal movements; sudden enlargement of abdomen; premature onset of contractions; vaginal discharge with odor; sudden escape of fluid from vagina; dysuria, oliguria or anuria; edema of face, hands, feet.",
+  "hint": "What must the woman report at once?",
+  "explain": "Danger signs during pregnancy are persistent vomiting, vaginal bleeding, severe headache, blurring of vision, chills or fever, severe persistent abdominal pain, marked changes in fetal movements, sudden enlargement of the abdomen, premature onset of contractions, vaginal discharge with odor, sudden escape of fluid from the vagina, dysuria/oliguria/anuria, and edema of face, hands and feet.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D41",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Presumptive and positive (sure) signs.",
+  "model": "Presumptive signs: amenorrhea, morning sickness, urinary frequency, breast changes, quickening, skin changes.\nPositive (sure) signs: visualization of the fetal sac by ultrasound, hearing fetal heart sound (FHS) by doppler stethoscope, felt fetal movement (by examiner), palpate fetal parts.",
+  "hint": "Which signs are presumptive, which are sure?",
+  "explain": "Presumptive signs are amenorrhea, morning sickness, urinary frequency, breast changes, quickening and skin changes. Positive signs are US visualization of the fetal sac, hearing the FHS, felt fetal movement, and palpating fetal parts.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D42",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Physiological changes of cardiovascular system (or any other system).",
+  "model": "Blood volume increases 30–50% of pre-pregnancy levels, peaking in the 3rd trimester; physiological anemia by hemodilution (plasma volume increases more than RBCs); blood pressure rise of 30 mmHg systolic / 15 mmHg diastolic on two occasions 6+ hours apart = toxemia; supine hypotension syndrome in 10% of women; heart displaced upward and to the left, heart sounds louder, physiological murmur may be present.",
+  "hint": "What changes in the heart and blood?",
+  "explain": "In pregnancy blood volume increases 30–50% of pre-pregnancy levels, peaking in the 3rd trimester, with physiological anemia by hemodilution; supine hypotension occurs in 10% of women.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D43",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Polyhydramnios.",
+  "model": "Increase in amniotic fluid around the fetus in the uterine during pregnancy, occurs about 1–2% of cases.",
+  "hint": "Too much of what fluid?",
+  "explain": "Polyhydramnios is increase in amniotic fluid around the fetus in the uterus during pregnancy, occurring in about 1–2% of cases.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D45",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Premature labor.",
+  "model": "Termination of pregnancy between 20–28 wks, fetal weight 500–1000 gm.\nNote: another review says 28–38 weeks / 1000–1500 gm; the 20–28 weeks / 500–1000 gm values above are used (conflict C-17).",
+  "hint": "Termination between which weeks?",
+  "explain": "Premature labor is termination of pregnancy between 20–28 weeks, fetal weight 500–1000 gm.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D46",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Immature labor.",
+  "model": "Termination of pregnancy between 20–28 weeks.",
+  "hint": "Termination between which weeks?",
+  "explain": "Immature labor is termination of pregnancy between 20–28 weeks.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "D47",
+  "level": "easy",
+  "type": "written",
+  "q": "Define: Nullipara / Nuligravida.",
+  "model": "Nullipara: a woman who has not delivered.\nNuligravida: a woman who has never been pregnant.",
+  "hint": "Never delivered, never pregnant — which is which?",
+  "explain": "Nullipara is a woman who has not delivered; nuligravida is a woman who has never been pregnant.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F1",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Mucus plug.",
+  "model": "The mucus plug (operculum) forms in the endocervical canal during pregnancy.",
+  "hint": "Where does it form?",
+  "explain": "The mucus plug (operculum) forms in the endocervical canal — the sources state only that it forms there.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F2",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Increase vaginal secretion during pregnancy.",
+  "model": "Vaginal secretion increases during pregnancy (increased vascularity of the vagina).",
+  "hint": "What increases in the vagina?",
+  "explain": "During pregnancy vaginal secretion increases, with increased vascularity and bluish discoloration (Chadwick's sign).",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F3",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Placenta.",
+  "model": "Nutrition, gas exchange, excretion, endocrine function, barrier, storage — the 7 functions of the mature placenta: developed by 3 months; formed from chorion (fetal part) + endometrium of mother (maternal part); allows oxygen and nutrients to diffuse into fetal blood without mixing of blood; small non-polar substances can pass (drugs, alcohol); protective barrier (most microorganisms cannot cross); stores nutrients; produces hormones necessary to maintain pregnancy.",
+  "hint": "What does the placenta do?",
+  "explain": "The placenta allows oxygen and nutrients to diffuse into fetal blood without mixing of blood, acts as a protective barrier, stores nutrients, and produces hormones necessary to maintain pregnancy.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F4",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Prenatal / antenatal care.",
+  "model": "Early detection of high-risk pregnancy; early detection and treatment of complications; health education; prepare the woman for labor, delivery and lactation; reduce maternal and perinatal mortality; ensure the birth of a healthy baby.",
+  "hint": "Why do we give antenatal care?",
+  "explain": "Antenatal care is for early detection of high-risk pregnancy and complications, health education, preparation for labor, delivery and lactation, and reducing maternal and perinatal mortality.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F5",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Oxytocin.",
+  "model": "Secreted by the posterior pituitary gland; initiates labor (uterine contraction).",
+  "hint": "Which gland, and what does it start?",
+  "explain": "Oxytocin is secreted by the posterior pituitary gland and initiates labor.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F6",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Prolactin.",
+  "model": "Secreted by the anterior pituitary gland; stimulates breast milk production.",
+  "hint": "Which gland, and what does it stimulate?",
+  "explain": "Prolactin is secreted by the anterior pituitary gland and stimulates breast milk production.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F7",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Fundal palpation.",
+  "model": "Assess fundal height, fetal parts, lie, presentation and engagement.",
+  "hint": "What do we assess by palpating the fundus?",
+  "explain": "Fundal palpation assesses fundal height, fetal parts, lie, presentation and engagement.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F8",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Pelvic palpation.",
+  "model": "Assess descent / engagement of the head and presentation.",
+  "hint": "What do we assess by pelvic palpation?",
+  "explain": "Pelvic palpation assesses descent and engagement of the head and presentation.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "F9",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Mature placenta (7 functions).",
+  "model": "1) Developed by 3 months.\n2) Formed from chorion (fetal part) + endometrium of mother (maternal part).\n3) Allows oxygen and nutrients to diffuse into fetal blood without mixing (of blood).\n4) Small non-polar substances can pass (drugs, alcohol).\n5) Protective barrier (most microorganisms cannot cross).\n6) Stores nutrients.\n7) Produces hormones necessary to maintain pregnancy.",
+  "hint": "How many functions — and the first two?",
+  "explain": "The mature placenta is developed by 3 months, formed from chorion (fetal) + endometrium (maternal), allows oxygen and nutrients to diffuse without blood mixing, lets small non-polar substances pass, is a protective barrier, stores nutrients, and produces hormones to maintain pregnancy.",
+  "src": "بنك السس"
+ },
+ {
+  "id": "F10",
+  "level": "easy",
+  "type": "written",
+  "q": "Function of: Ovary during pregnancy.",
+  "model": "Produces estrogen and progesterone until 10–12 weeks until the placenta takes over.",
+  "hint": "Until when does the ovary produce the hormones?",
+  "explain": "The ovary produces estrogen and progesterone until 10–12 weeks, until the placenta takes over.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L1",
+  "level": "med",
+  "type": "written",
+  "q": "List: Positive signs of pregnancy.",
+  "model": "1) Visualization of the fetal sac by ultrasound.\n2) Hearing fetal heart sound (FHS) by doppler stethoscope.\n3) Felt fetal movement (by examiner).\n4) Palpate fetal parts.",
+  "hint": "How many positive signs — and the first?",
+  "explain": "The positive (sure) signs of pregnancy are visualization of the fetal sac by ultrasound, hearing the FHS, felt fetal movement, and palpating fetal parts.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L2",
+  "level": "med",
+  "type": "written",
+  "q": "List: Elements of antenatal care.",
+  "model": "1) Complete history taking.\n2) General examination.\n3) Physical examination.\n4) Laboratory investigations.\n5) Health education.",
+  "hint": "How many elements — and the first?",
+  "explain": "The elements of antenatal care are complete history taking, general examination, physical examination, laboratory investigations, and health education.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L3",
+  "level": "med",
+  "type": "written",
+  "q": "List: Risk factors of pre-eclampsia.",
+  "model": "Chronic hypertension; chronic nephritis (renal disease); past history of pre-eclampsia; family history of pre-eclampsia; obesity; polyhydramnios; multiple pregnancies; smoking and stress.",
+  "hint": "Which past history counts?",
+  "explain": "Risk factors of pre-eclampsia are chronic hypertension, chronic nephritis, past history of pre-eclampsia, family history of pre-eclampsia, obesity, polyhydramnios, multiple pregnancies, smoking and stress.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L4",
+  "level": "med",
+  "type": "written",
+  "q": "List: Severe pre-eclampsia.",
+  "model": "BP ≥160/110 mmHg + proteinuria ≥+2/+3 (2 gms/5 gms per 24 hrs); serum creatinine ≥1.2 mg/dl; persistent headache, visual disturbance, epigastric pain; oliguria/anuria; pulmonary edema.",
+  "hint": "BP and proteinuria of severe disease?",
+  "explain": "Severe pre-eclampsia is BP ≥160/110 mmHg with proteinuria ≥+2/+3, serum creatinine ≥1.2 mg/dl, persistent headache, visual disturbance, epigastric pain, oliguria/anuria, and pulmonary edema.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L5",
+  "level": "med",
+  "type": "written",
+  "q": "List: Instructions for mild pre-eclampsia (home management).",
+  "model": "Bed rest; left lateral position; quiet and calm environment; restrict visitors and phone calls; weigh daily; count fetal kicks; check urine protein; frequent doctor visits; antihypertensive drugs sometimes; sedatives.\nDiet: protein 70–80 g/day, avoid caffeine, plenty of water, less salt.",
+  "hint": "Position and daily checks at home?",
+  "explain": "Home management of mild pre-eclampsia is bed rest, left lateral position, quiet and calm environment, restrict visitors and phone calls, weigh daily, count fetal kicks, check urine protein, and frequent doctor visits.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L7",
+  "level": "med",
+  "type": "written",
+  "q": "List: Fetal complications of pre-eclampsia.",
+  "model": "Intrauterine growth retardation (IUGR); intrauterine fetal death (IUFD); prematurity (+ respiratory distress syndrome, hemorrhage, infection).",
+  "hint": "What happens to the fetus?",
+  "explain": "Fetal complications of pre-eclampsia are intrauterine growth retardation, intrauterine fetal death, and prematurity.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L9",
+  "level": "med",
+  "type": "written",
+  "q": "List: Maternal complications of eclampsia.",
+  "model": "Cerebral hemorrhage; renal failure; liver failure; abruptio placenta; aspiration pneumonia; death.",
+  "hint": "Which organs fail?",
+  "explain": "Maternal complications of eclampsia are cerebral hemorrhage, renal failure, liver failure, abruptio placenta, aspiration pneumonia, and death.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L10",
+  "level": "med",
+  "type": "written",
+  "q": "List: Causes of bleeding in early pregnancy.",
+  "model": "Abortion; vesicular mole; ectopic pregnancy; local lesions (cervical polyps, cervical cancer).",
+  "hint": "Bleeding before 20 weeks — which causes?",
+  "explain": "Causes of bleeding in early pregnancy are abortion, vesicular mole, ectopic pregnancy, and local lesions (cervical polyps, cervical cancer).",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L11",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of threatened abortion.",
+  "model": "Mild bright red bleeding; pain/backache may or may not be present; cervical os closed; membranes intact.",
+  "hint": "Bleeding, pain, os, membranes?",
+  "explain": "Threatened abortion has mild bright red bleeding, pain/backache may or may not be present, cervical os closed, and membranes intact.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L12",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of incomplete abortion.",
+  "model": "Severe bleeding; cervix partly closed; no uterine involution; pain may or may not be present; uterus soft and smaller than expected.",
+  "hint": "How is the cervix in incomplete abortion?",
+  "explain": "Incomplete abortion has severe bleeding, cervix partly closed, no uterine involution, and a soft uterus smaller than expected.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L13",
+  "level": "med",
+  "type": "written",
+  "q": "List: Nursing management of septic abortion.",
+  "model": "Isolation; bed rest in Fowler's position; vital signs + fluid chart; fluid infusion 5% glucose + saline to maintain urine output >30 ml/hr; bacteriological identification; antibiotics; antipyretic; analgesic; soiled pads collected and burned.",
+  "hint": "Position and fluids?",
+  "explain": "Nursing management of septic abortion is isolation, bed rest in Fowler's position, vital signs and fluid chart, fluid infusion to maintain urine output >30 ml/hr, antibiotics, antipyretic, analgesic, and burning soiled pads.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L14",
+  "level": "med",
+  "type": "written",
+  "q": "List: Complications of vesicular mole.",
+  "model": "Hemorrhage; shock; perforation; uterine sepsis; choriocarcinoma.",
+  "hint": "Which five complications?",
+  "explain": "Complications of vesicular mole are hemorrhage, shock, perforation, uterine sepsis, and choriocarcinoma.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L15",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of ectopic pregnancy.",
+  "model": "Short amenorrhea; sudden/recurrent severe colicky abdominal pain in one iliac fossa or entire lower abdomen; blood-stained vaginal discharge; signs of shock; dyspareunia.",
+  "hint": "Pain where, and which discharge?",
+  "explain": "Ectopic pregnancy has short amenorrhea, sudden/recurrent severe colicky abdominal pain in one iliac fossa or the entire lower abdomen, blood-stained vaginal discharge, signs of shock, and dyspareunia.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L16",
+  "level": "med",
+  "type": "written",
+  "q": "List: Classification of bleeding late in pregnancy.",
+  "model": "Placenta previa; abruptio placenta; vasa previa.",
+  "hint": "Which three?",
+  "explain": "Bleeding late in pregnancy is classified as placenta previa, abruptio placenta, and vasa previa.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L17",
+  "level": "med",
+  "type": "written",
+  "q": "List: Degrees of placenta previa.",
+  "model": "Complete 'Centralis' — placenta covers the internal os even when fully dilated.\nIncomplete 'Partials' — placenta covers the os when closed, partially when fully dilated.\nLateralis — placenta on the lower uterine segment, does not reach the internal os.\nMarginalis — placenta reaches the internal os but does not cover it.",
+  "hint": "Which degree covers the os even when dilated?",
+  "explain": "Degrees of placenta previa are complete (centralis), incomplete (partials), lateralis, and marginalis.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L18",
+  "level": "med",
+  "type": "written",
+  "q": "List: Types of abruptio placenta.",
+  "model": "Revealed — almost all blood expelled through the cervix.\nConcealed — almost all blood retained in the uterus.\nCombined — some blood retained inside the uterus and some expelled through the cervix.",
+  "hint": "Revealed vs concealed — where is the blood?",
+  "explain": "Types of abruptio placenta are revealed (blood expelled through the cervix), concealed (blood retained in the uterus), and combined.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L19",
+  "level": "med",
+  "type": "written",
+  "q": "List: Presumptive signs of pregnancy.",
+  "model": "Amenorrhea; morning sickness (nausea and vomiting); urinary frequency; breast changes; quickening; skin changes (chloasma, linea nigra, striae gravidarum).",
+  "hint": "Which six?",
+  "explain": "Presumptive signs of pregnancy are amenorrhea, morning sickness, urinary frequency, breast changes, quickening, and skin changes.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L20",
+  "level": "med",
+  "type": "written",
+  "q": "List: Significance of prenatal care.",
+  "model": "Early detection of high-risk pregnancy; early detection and treatment of complications; health education; prepare the woman for labor, delivery and lactation; reduce maternal and perinatal mortality; ensure the birth of a healthy baby.",
+  "hint": "What does prenatal care detect early?",
+  "explain": "Prenatal care is significant for early detection of high-risk pregnancy and complications, health education, preparation for labor, delivery and lactation, and reducing maternal and perinatal mortality.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L21",
+  "level": "med",
+  "type": "written",
+  "q": "List: Integumentary changes during pregnancy.",
+  "model": "Pigmentation (chloasma, linea nigra); striae gravidarum; increased vascularity (spider nevi, palmar erythema); increased sweating.",
+  "hint": "Skin changes — which?",
+  "explain": "Integumentary changes during pregnancy are pigmentation (chloasma, linea nigra), striae gravidarum, increased vascularity (spider nevi, palmar erythema), and increased sweating.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L22",
+  "level": "med",
+  "type": "written",
+  "q": "List: Classification of hypertensive disorders in pregnancy.",
+  "model": "1) Gestational hypertension — new hypertension ≥140/90 mmHg at or after 20 weeks without proteinuria or other features of pre-eclampsia.\n2) Chronic hypertension — hypertension known before pregnancy, or a rise >140/90 before 20 weeks persisting 6 weeks after delivery.\n3) Pregnancy-induced hypertension (PIH) — new arterial hypertension after 20 weeks; includes pre-eclampsia and eclampsia.",
+  "hint": "Which three types?",
+  "explain": "Hypertensive disorders in pregnancy are gestational hypertension, chronic hypertension, and pregnancy-induced hypertension (PIH).",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L23",
+  "level": "med",
+  "type": "written",
+  "q": "List: HELLP syndrome (what it is + symptoms).",
+  "model": "H = Hemolysis, E = Elevated Liver enzymes, L = Low Platelets; occurs in 10–20% of severe pre-eclampsia/eclampsia.\nSymptoms: headache, blurring of vision, epigastric pain, nausea/vomiting, malaise.",
+  "hint": "What does HELLP stand for?",
+  "explain": "HELLP syndrome is Hemolysis, Elevated Liver enzymes, Low Platelets; it occurs in 10–20% of severe pre-eclampsia/eclampsia.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L24",
+  "level": "med",
+  "type": "written",
+  "q": "List: Fetal causes of abortion.",
+  "model": "Chromosomal anomalies; diseases of the fertilized ovum; hypoxia (fetal hypoxia may lead to abortion).",
+  "hint": "Which three fetal causes?",
+  "explain": "Fetal causes of abortion are chromosomal anomalies, diseases of the fertilized ovum, and hypoxia.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L25",
+  "level": "med",
+  "type": "written",
+  "q": "List: Maternal causes of abortion.",
+  "model": "Infections (influenza, malaria, syphilis, HIV); chronic nephritis; tuberculosis; drugs; Rh/ABO incompatibility; incompetent cervix; uterine malformation; fibroid; adhesions; trauma; criminal interference; endocrine disorders (hypothyroidism, diabetes mellitus).",
+  "hint": "Which infections?",
+  "explain": "Maternal causes of abortion include infections, chronic nephritis, tuberculosis, drugs, Rh/ABO incompatibility, incompetent cervix, uterine malformation, fibroid, adhesions, trauma, criminal interference, and endocrine disorders.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L26",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of inevitable abortion.",
+  "model": "Bleeding excessive for more than 10 days; red blood with clots; severe colicky lower abdominal pain; cervical os dilated; membranes ruptured; severe blood loss and shock.",
+  "hint": "Bleeding for how long, and the os?",
+  "explain": "Inevitable abortion has bleeding excessive for more than 10 days, red blood with clots, severe colicky lower abdominal pain, cervical os dilated, membranes ruptured, and severe blood loss and shock.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L27",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of missed abortion.",
+  "model": "Pregnancy signs disappear; pregnancy test negative; fundal height does not increase; breasts may secrete milk; FHR absent; no fetal movement; sonar confirms death; brownish discharge.",
+  "hint": "What disappears first?",
+  "explain": "Missed abortion has pregnancy signs disappearing, negative pregnancy test, fundal height not increasing, breasts may secrete milk, FHR absent, no fetal movement, sonar confirming death, and brownish discharge.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L28",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of complete abortion.",
+  "model": "Minimal bleeding; pain stops; uterus hard and much smaller; cervix closed.",
+  "hint": "Bleeding and pain — how?",
+  "explain": "Complete abortion has minimal bleeding, pain stops, uterus hard and much smaller, and cervix closed.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L29",
+  "level": "med",
+  "type": "written",
+  "q": "List: Nursing management of inevitable abortion.",
+  "model": "Hospitalization; anti-shock measures (fluid infusion, blood transfusion if indicated, oxygen mask 6–8 L/min, warmth); sedative 10 mg morphia; oxytocin if no heart beats; dilatation and curettage (D&C).",
+  "hint": "What anti-shock measures?",
+  "explain": "Nursing management of inevitable abortion is hospitalization, anti-shock measures (fluid infusion, blood transfusion if indicated, oxygen mask 6–8 L/min, warmth), sedative 10 mg morphia, oxytocin if no heart beats, and D&C.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L30",
+  "level": "med",
+  "type": "written",
+  "q": "List: Preventive measures to avoid spontaneous abortion.",
+  "model": "Nutritional diet; avoid smoking and drinking; immunizations; treat vaginal and pelvic infections.",
+  "hint": "Which four measures?",
+  "explain": "Prevention of spontaneous abortion is a nutritional diet, avoiding smoking and drinking, immunizations, and treating vaginal and pelvic infections.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L31",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of vesicular mole.",
+  "model": "Excessive frequent vomiting; over-distension of the uterus (larger than expected); vaginal bleeding plus passage of vesicles; no fetal movements or fetal parts; positive pregnancy test in highly diluted urine 1:500.",
+  "hint": "Vomiting and what in the urine test?",
+  "explain": "Vesicular mole has excessive frequent vomiting, over-distension of the uterus, vaginal bleeding plus passage of vesicles, no fetal movements or fetal parts, and a positive pregnancy test in highly diluted urine 1:500.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L32",
+  "level": "med",
+  "type": "written",
+  "q": "List: Nursing management of vesicular mole.",
+  "model": "Admit; evacuation under general anesthesia; health education — monitor HCG for 2 years (monthly for the first 3 months, then every 3 months for 1 year); birth spacing — prevent pregnancy for 2 years; if HCG >5 IU/L 8 weeks postpartum → prophylactic chemotherapy.",
+  "hint": "How long is HCG followed, and pregnancy prevented?",
+  "explain": "Nursing management of vesicular mole is admission, evacuation under general anesthesia, monitoring HCG for 2 years, and preventing pregnancy for 2 years.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L33",
+  "level": "med",
+  "type": "written",
+  "q": "List: Causes of ectopic pregnancy.",
+  "model": "Impaired tubal ciliary action; impaired tubal contractility; decreased sperm mobility; IUD use.\nRisk factors: pelvic inflammatory disease (PID); previous pelvic operations (D&C, ovarian surgery).",
+  "hint": "What goes wrong in the tube?",
+  "explain": "Causes of ectopic pregnancy are impaired tubal ciliary action, impaired tubal contractility, decreased sperm mobility, and IUD use.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L34",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of placenta previa.",
+  "model": "Bright red painless recurrent vaginal bleeding; soft pain-free uterus; easy to feel the fetus and hear the FHR.",
+  "hint": "Bleeding — which color, painful or not?",
+  "explain": "Placenta previa has bright red painless recurrent vaginal bleeding, a soft pain-free uterus, and the fetus is easy to feel with FHR heard.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L35",
+  "level": "med",
+  "type": "written",
+  "q": "List: Nursing management of placenta previa.",
+  "model": "Bed rest + restrict activity ≥24 hours after admission; avoid constipation, enemas, vaginal and rectal examinations; strict aseptic technique; continuous observation of bleeding and shock; FHR every 4 hours; accurate intake/output; IV fluids and oxygen mask.",
+  "hint": "What is avoided in previa?",
+  "explain": "Nursing management of placenta previa is bed rest with restricted activity ≥24 hours, avoiding constipation, enemas, and vaginal and rectal examinations, strict aseptic technique, continuous observation of bleeding and shock, and FHR every 4 hours.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L36",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of abruptio placenta.",
+  "model": "Abdominal pain; dark red vaginal bleeding; tender uterus; fetal parts hard to feel; no FHR heard.",
+  "hint": "Bleeding — which color, and the uterus?",
+  "explain": "Abruptio placenta has abdominal pain, dark red vaginal bleeding, a tender uterus, fetal parts hard to feel, and no FHR heard.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L37",
+  "level": "med",
+  "type": "written",
+  "q": "List: Nursing management of abruptio placenta.",
+  "model": "Continuous observation of general condition, BP, vital signs, bleeding and shock; continuous observation of fetal condition; IV transfusion; medications for hypotension and shock; regular urine analysis for proteinuria; accurate intake/output; assist vaginal delivery; pre- and post-operative care.",
+  "hint": "What is observed continuously?",
+  "explain": "Nursing management of abruptio placenta is continuous observation of the general condition, vital signs, bleeding and shock, and of the fetal condition, IV transfusion, medications for hypotension and shock, and accurate intake/output.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L38",
+  "level": "med",
+  "type": "written",
+  "q": "List: Danger signs during pregnancy.",
+  "model": "Persistent vomiting; vaginal bleeding; severe headache; blurring of vision; chills or fever; severe persistent abdominal pain; marked changes in fetal movements; sudden enlargement of abdomen; premature onset of contractions; vaginal discharge with odor; sudden escape of fluid from vagina; dysuria, oliguria or anuria; edema of face, hands, feet.",
+  "hint": "How many danger signs?",
+  "explain": "Danger signs during pregnancy are persistent vomiting, vaginal bleeding, severe headache, blurring of vision, chills or fever, severe persistent abdominal pain, marked changes in fetal movements, sudden enlargement of the abdomen, premature onset of contractions, vaginal discharge with odor, sudden escape of fluid from the vagina, dysuria/oliguria/anuria, and edema of face, hands and feet.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L39",
+  "level": "med",
+  "type": "written",
+  "q": "List: Local abdominal examinations.",
+  "model": "Inspection (size, shape, scars, striae, linea nigra); palpation (fundal height, fetal parts, lie, presentation, engagement); auscultation (FHS).",
+  "hint": "Inspection, palpation, auscultation — what in each?",
+  "explain": "Local abdominal examination is inspection (size, shape, scars, striae, linea nigra), palpation (fundal height, fetal parts, lie, presentation, engagement), and auscultation (FHS).",
+  "src": "بنك طنطا 2021/2022"
+ },
+ {
+  "id": "L40",
+  "level": "med",
+  "type": "written",
+  "q": "List: Types of abortion (10).",
+  "model": "Spontaneous; threatened; missed; inevitable; complete; incomplete; habitual; therapeutic; criminal; septic.",
+  "hint": "How many types?",
+  "explain": "The 10 types of abortion are spontaneous, threatened, missed, inevitable, complete, incomplete, habitual, therapeutic, criminal, and septic.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L41",
+  "level": "med",
+  "type": "written",
+  "q": "List: Maternal complications of pre-eclampsia.",
+  "model": "Convulsions/coma (eclampsia 1–2%); cerebral hemorrhage; renal failure; liver failure; abruptio placenta; residual chronic hypertension (~1/3 of cases); recurrent pre-eclampsia; retinal detachment; hemolytic anemia; HELLP syndrome.",
+  "hint": "Which complications for the mother?",
+  "explain": "Maternal complications of pre-eclampsia are convulsions/coma, cerebral hemorrhage, renal failure, liver failure, abruptio placenta, residual chronic hypertension, recurrent pre-eclampsia, retinal detachment, hemolytic anemia, and HELLP syndrome.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "L42",
+  "level": "med",
+  "type": "written",
+  "q": "List: Fetal complications of eclampsia.",
+  "model": "Perinatal mortality 10–15%; IUGR; IUFD; prematurity.",
+  "hint": "What happens to the fetus in eclampsia?",
+  "explain": "Fetal complications of eclampsia are perinatal mortality 10–15%, IUGR, IUFD, and prematurity.",
+  "src": "بنك طنطا 2021/2022"
+ },
+ {
+  "id": "L43",
+  "level": "med",
+  "type": "written",
+  "q": "List: General measurement / nursing care of a patient with seizures.",
+  "model": "Maintain airway (left lateral decubitus position, suction, oral airway, oxygen, ABG); prevent injury (padding on side rails); post-seizure care (Foley catheter, internal fetal monitor, CVP line, hourly monitoring); medical — magnesium sulfate, parenteral antihypertensives, delivery (induce with pitocin drip if not in labor within 3–4 hours after the last seizure; caesarean section is NOT routine).",
+  "hint": "Airway first — how?",
+  "explain": "Care of a patient with seizures is maintaining the airway (left lateral decubitus position, suction, oral airway, oxygen), preventing injury, post-seizure care, magnesium sulfate, parenteral antihypertensives, and delivery.",
+  "src": "بنك طنطا 2021/2022"
+ },
+ {
+  "id": "L44",
+  "level": "med",
+  "type": "written",
+  "q": "List: Causes of tubal pregnancy.",
+  "model": "Impaired tubal ciliary action; impaired tubal contractility; decreased sperm mobility; IUD use; pelvic inflammatory disease (PID); previous pelvic operations (D&C, ovarian surgery).",
+  "hint": "Same causes as ectopic — which?",
+  "explain": "Causes of tubal pregnancy are impaired tubal ciliary action, impaired tubal contractility, decreased sperm mobility, IUD use, pelvic inflammatory disease, and previous pelvic operations.",
+  "src": "بنك طنطا 2021/2022"
+ },
+ {
+  "id": "L46",
+  "level": "med",
+  "type": "written",
+  "q": "List: Risk factors of vesicular mole.",
+  "model": "Maternal age >40 or <19 years; malnutrition.",
+  "hint": "Age and what else?",
+  "explain": "Risk factors of vesicular mole are maternal age >40 or <19 years and malnutrition.",
+  "src": "بنك إمبابة"
+ },
+ {
+  "id": "L48",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs of early pregnancy.",
+  "model": "Amenorrhea; morning sickness (nausea and vomiting); urinary frequency; breast changes; quickening; skin changes (chloasma, linea nigra, striae gravidarum).",
+  "hint": "Which early signs?",
+  "explain": "Signs of early pregnancy are the presumptive signs: amenorrhea, morning sickness, urinary frequency, breast changes, quickening, and skin changes.",
+  "src": "امتحانات بورسعيد 2025/2026"
+ },
+ {
+  "id": "L49",
+  "level": "med",
+  "type": "written",
+  "q": "List: Schedule of antenatal visits.",
+  "model": "Before 28 weeks every 4 weeks (every month); from 28 to 36 weeks every 2 weeks; thereafter every week. Minimum 3 visits in the first 20 weeks.",
+  "hint": "Before 28 weeks — how often?",
+  "explain": "The schedule of antenatal visits is every 4 weeks before 28 weeks, every 2 weeks from 28 to 36 weeks, and every week thereafter.",
+  "src": "بنك إمبابة"
+ },
+ {
+  "id": "L50",
+  "level": "med",
+  "type": "written",
+  "q": "List: Classification of pre-eclampsia.",
+  "model": "Mild pre-eclampsia — hypertension NOT reaching 160/110 mmHg after 20 weeks; proteinuria 1+ on dipstick (300 mg/24 hrs); manifestations disappear <12 weeks postpartum.\nSevere pre-eclampsia — BP ≥160/110 mmHg + proteinuria ≥+2/+3 (2 gms/5 gms per 24 hrs); serum creatinine ≥1.2 mg/dl; persistent headache, visual disturbance, epigastric pain; oliguria/anuria; pulmonary edema.",
+  "hint": "Mild vs severe — the BP line?",
+  "explain": "Pre-eclampsia is classified as mild (hypertension not reaching 160/110 mmHg) and severe (BP ≥160/110 mmHg with proteinuria ≥+2/+3).",
+  "src": "بنك إمبابة"
+ },
+ {
+  "id": "L51",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of severe pre-eclampsia.",
+  "model": "BP ≥160/110 mmHg + proteinuria ≥+2/+3 (2 gms/5 gms per 24 hrs); serum creatinine ≥1.2 mg/dl; persistent headache, visual disturbance, epigastric pain; oliguria/anuria; pulmonary edema.",
+  "hint": "BP and proteinuria of severe disease?",
+  "explain": "Signs and symptoms of severe pre-eclampsia are BP ≥160/110 mmHg with proteinuria ≥+2/+3, serum creatinine ≥1.2 mg/dl, persistent headache, visual disturbance, epigastric pain, oliguria/anuria, and pulmonary edema.",
+  "src": "بنك إمبابة"
+ },
+ {
+  "id": "L52",
+  "level": "med",
+  "type": "written",
+  "q": "List: Components of the initial antenatal visit.",
+  "model": "History taking (personal, present, menstrual, obstetric, past medical, family, social); general examination (height >150 cm, weight, shoe size >3, general appearance, vital signs, edema, anemia, teeth, breasts, thyroid); local abdominal examination (inspection, palpation, auscultation); investigations (urine, stool, CBC, blood group/Rh, random glucose 80–120 mg/100 ml).",
+  "hint": "History, examination, investigations — what in each?",
+  "explain": "The initial antenatal visit has history taking, general examination, local abdominal examination, and investigations.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "L53",
+  "level": "med",
+  "type": "written",
+  "q": "List: Women's reproductive health needs.",
+  "model": "A continuum from sexual health; keeping labour normal; prevention and management of infertility; pre-conceptional care. (Also: postnatal care; postmenopausal health care.)",
+  "hint": "Keeping what normal?",
+  "explain": "Women's reproductive health needs are a continuum from sexual health, keeping labour normal, prevention and management of infertility, and pre-conceptional care.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "L54",
+  "level": "med",
+  "type": "written",
+  "q": "List: Women's reproductive health rights.",
+  "model": "Right to be free from all forms of discrimination; right to life, liberty and security; right to marry and found a family; right to education and information; right to health and health care; right to benefit from scientific progress; right of adolescents to meet their needs; the Egyptian women work law.",
+  "hint": "Which rights?",
+  "explain": "Reproductive health rights are the right to be free from discrimination, the right to life, liberty and security, the right to marry and found a family, the right to education and information, the right to health and health care, the right to benefit from scientific progress, the right of adolescents to meet their needs, and the Egyptian women work law.",
+  "src": "بنك الإسكندرية 2023/2024"
+ },
+ {
+  "id": "L57",
+  "level": "med",
+  "type": "written",
+  "q": "List: Signs and symptoms of septic abortion.",
+  "model": "Tender painful uterus; offensive bleeding; high temperature; rapid pulse; unstable blood pressure; shock.",
+  "hint": "Offensive bleeding plus what?",
+  "explain": "Septic abortion has a tender painful uterus, offensive bleeding, high temperature, rapid pulse, unstable blood pressure, and shock.",
+  "src": "بنك إمبابة"
+ },
+ {
+  "id": "E6",
+  "level": "med",
+  "type": "written",
+  "q": "Hospital nursing management of mild pre-eclampsia.",
+  "model": "Complete bed rest; left lateral position; quiet environment; monitor BP, weight, urine protein, fetal condition; magnesium sulfate as anticonvulsant; Diazepam (Valium) as sedative; steroid injections after 24 weeks; emergency supplies at bedside.\nThe only cure is delivery of the baby; at ≥37 weeks induce labor or do caesarean section.",
+  "hint": "Position, drugs, and the only cure?",
+  "explain": "Hospital nursing management of mild pre-eclampsia is complete bed rest, left lateral position, quiet environment, monitoring BP, weight, urine protein and fetal condition, magnesium sulfate as anticonvulsant, Diazepam as sedative, and steroid injections after 24 weeks.",
+  "src": "بنك طنطا 2021/2022"
+ },
+ {
+  "id": "E14",
+  "level": "med",
+  "type": "written",
+  "q": "Nursing management of threatened abortion.",
+  "model": "Complete bed rest; avoid heavy work, enema and constipation; no sexual intercourse; administration of prescribed drugs.",
+  "hint": "Rest and what to avoid?",
+  "explain": "Nursing management of threatened abortion is complete bed rest, avoiding heavy work, enema and constipation, no sexual intercourse, and administration of prescribed drugs.",
+  "src": "بنك طنطا 2021/2022"
+ },
+ {
+  "id": "E29",
+  "level": "med",
+  "type": "written",
+  "q": "Stages of eclampsia fit.",
+  "model": "1) Premonitory stage (1/2 minute): eye rolled up, twitches of face and hands.\n2) Tonic stage (1/2 minute): generalized tonic spasm, cyanosis, tongue may be bitten with clenched teeth.\n3) Clonic stage (1–2 minutes): convulsions, face congested and cyanosed, conjunctival congestion, blood-stained froth, stertorous breathing, temperature rise, involuntary passage of urine and stool.\n4) Coma (variable duration): respiratory and metabolic acidosis, deep coma, cerebral hemorrhage; labor usually starts shortly after the fit.",
+  "hint": "How many stages — and the first?",
+  "explain": "The stages of an eclampsia fit are premonitory, tonic, clonic, and coma.",
+  "src": "امتحانات الدور الثاني"
+ },
+ {
+  "id": "DF2",
+  "level": "med",
+  "type": "written",
+  "q": "Differentiate between threatened and inevitable abortion.",
+  "model": "Threatened abortion: mild bright red bleeding; pain/backache may or may not be present; cervical os closed; membranes intact; ultrasound shows a viable fetus; pregnancy may go to term.\nInevitable abortion: bleeding excessive for more than 10 days, red blood with clots; severe colicky lower abdominal pain; cervical os dilated; membranes ruptured; severe blood loss and shock.",
+  "hint": "Os closed or dilated — which is which?",
+  "explain": "In threatened abortion the os is closed and the membranes are intact; in inevitable abortion the os is dilated, the membranes are ruptured, and bleeding is excessive for more than 10 days.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "DF3",
+  "level": "med",
+  "type": "written",
+  "q": "Differentiate between complete and incomplete abortion.",
+  "model": "Complete abortion: minimal bleeding; pain stops; uterus hard and much smaller; cervix closed.\nIncomplete abortion: severe bleeding; cervix partly closed; no uterine involution; pain may or may not be present; uterus soft and smaller than expected.",
+  "hint": "Cervix closed, partly closed — which is which?",
+  "explain": "In complete abortion the cervix is closed, bleeding is minimal and pain stops; in incomplete abortion the cervix is partly closed with severe bleeding and no uterine involution.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "DF4",
+  "level": "med",
+  "type": "written",
+  "q": "Differentiate between methods of placental separation — Shultze vs Duncan.",
+  "model": "Shultze (97%): separation starts at the center; less liability for bleeding.\nDuncan (3%): separation starts at the edges.",
+  "hint": "Center or edges — which is Shultze?",
+  "explain": "Shultze separation (97%) starts at the center with less liability for bleeding; Duncan separation (3%) starts at the edges.",
+  "src": "البنك المشترك"
+ },
+ {
+  "id": "DF5",
+  "level": "med",
+  "type": "written",
+  "q": "Differentiate between Chadwick's sign and Goodell's sign.",
+  "model": "Chadwick's sign: bluish discoloration of the cervix, vagina and labia.\nGoodell's sign: softening of the cervix, uterus and vagina.",
+  "hint": "Color or softening — which is which?",
+  "explain": "Chadwick's sign is bluish discoloration of the cervix, vagina and labia; Goodell's sign is softening of the cervix, uterus and vagina.",
+  "src": "بنك إمبابة"
+ }
+];
+const AM_MCQ = [
+ {
+  "id": "Q-T8",
+  "q": "Which clinical finding in a primiparous client at 32 weeks of gestation might be an indication of anemia?",
+  "options": [
+   "Ptyalism",
+   "Pyrosis",
+   "Pica",
+   "Decreased peristalsis"
+  ],
+  "correct": 2,
+  "explain": "Pica (a desire to eat nonfood substances) is an indication of iron deficiency and should be evaluated. Cravings include ice, clay, and laundry starch. Ptyalism (excessive salivation), pyrosis (heartburn), and decreased peristalsis are normal findings.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-T14",
+  "q": "What is the correct term used to describe the mucous plug that forms in the endocervical canal?",
+  "options": [
+   "Operculum",
+   "Leukorrhea",
+   "Funic souffle",
+   "Ballottement"
+  ],
+  "correct": 0,
+  "explain": "The operculum protects against bacterial invasion. The funic souffle is the sound of blood flowing through the umbilical vessels. Ballottement is a technique for palpating the fetus.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-T24",
+  "q": "Cardiac output increases up to 50% by the 32nd week of pregnancy. What is the rationale for this change?",
+  "options": [
+   "To compensate for the decreased renal plasma flow",
+   "To provide adequate perfusion of the placenta",
+   "To eliminate metabolic wastes of the mother",
+   "To prevent maternal and fetal dehydration"
+  ],
+  "correct": 1,
+  "explain": "The primary function of increased vascular volume is to transport oxygen and nutrients to the fetus via the placenta. Renal plasma flow increases during pregnancy.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-T12",
+  "q": "hCG is an important biochemical marker for pregnancy and therefore the basis for many tests. Which statement regarding hCG is true?",
+  "options": [
+   "hCG can be detected as early as 7 to 10 days after conception.",
+   "hCG levels gradually and uniformly increase throughout pregnancy.",
+   "Significantly lower-than-normal increases in the levels of hCG may indicate a postdate pregnancy.",
+   "Higher-than-normal levels of hCG may indicate an ectopic pregnancy or Down syndrome."
+  ],
+  "correct": 3,
+  "explain": "hCG can be detected as early as 7 to 10 days after conception. Higher hCG levels also could be a sign of a multiple gestation. The hCG levels fluctuate during pregnancy, peaking, declining, stabilizing, and then increasing again. Abnormally slow increases may indicate impending miscarriage.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-EL2",
+  "q": "A pregnant client reports the following obstetrical history: one prior delivery at 39 weeks, one delivery at 34 weeks, two miscarriages at 8 and 10 weeks, and two living children. What is her precise GTPAL score?",
+  "options": [
+   "G4 T1 P1 A2 L2",
+   "G5 T1 P1 A2 L2",
+   "G[?] T2 P0 A2 L[?]",
+   "G5 T1 P2 A1 L[?]"
+  ],
+  "correct": 1,
+  "explain": "GTPAL stands for Gravida (total pregnancies including the current one), Term (37+ weeks), Preterm (20–36.6 weeks), Abortion (<20 weeks), and Living. The patient is currently pregnant (1), had a term birth (1), a preterm birth (1), and two abortions (2). Total G=5.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-U9",
+  "q": "In the 12th week of gestation, a client completely expels the products of conception. Because the client is Rh negative, the nurse must:",
+  "options": [
+   "Administer RhoGAM within 72 hours",
+   "Make certain she receives RhoGAM on her first clinic visit",
+   "Not give RhoGAM, since it is not used with the birth of a stillborn",
+   "Make certain the client does not receive RhoGAM, since the gestation only lasted 12 weeks."
+  ],
+  "correct": 0,
+  "explain": "RhoGAM is given within 72 hours postpartum if the client has not been sensitized already.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-EL3",
+  "q": "A patient with severe preeclampsia is receiving an intravenous magnesium sulfate infusion. Assessment reveals absent deep tendon reflexes (DTRs) and a respiratory rate of 10 breaths/minute. What is the priority nursing action?",
+  "options": [
+   "Increase the IV fluid rate to flush the kidneys.",
+   "Discontinue the magnesium sulfate infusion immediately.",
+   "Administer IV labetalol to lower the blood pressure.",
+   "Draw stat serum magnesium levels and wait for the results."
+  ],
+  "correct": 1,
+  "explain": "Absent DTRs and severe respiratory depression are the cardinal signs of acute magnesium toxicity. Magnesium is a CNS depressant. You must stop the infusion immediately, maintain the airway, and prepare to administer the antidote (Calcium Gluconate). Do not wait for lab confirmation when the patient stops breathing.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-S1",
+  "q": "A nurse is caring for a client who is being given intravenous magnesium sulfate to treat preeclampsia. Which adverse side effect alerts the nurse to notify the health care provider?",
+  "options": [
+   "Respiratory rate of 18 breaths/min",
+   "2+ patellar reflex response",
+   "Magnesium blood level of 5 mEq/L",
+   "Urine output of less than 100 mL in 4 hours"
+  ],
+  "correct": 3,
+  "explain": "Urine output of less than 100 mL in 4 hours (below 30 mL/hour) is a sign of magnesium toxicity — the infusion must be stopped and the provider notified.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-N11",
+  "q": "Which assessment finding suggests that your laboring client's blood magnesium level is too high?",
+  "options": [
+   "Hyperactive reflexes",
+   "Absent reflexes",
+   "Generalized seizure",
+   "Urine output of 60 mL/hr"
+  ],
+  "correct": 1,
+  "explain": "Magnesium acts as a central nervous system depressant by blocking neuromuscular transmission. Absent reflexes indicates magnesium toxicity; hyperactive reflexes, generalized seizure, and urine output of 60 mL/hr are not symptoms of magnesium toxicity.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-N7",
+  "q": "A client taking magnesium sulfate has a respiratory rate of 10 breaths/min. In addition to discontinuing the medication, which action should the nurse take?",
+  "options": [
+   "Increase the clients IV fluids.",
+   "Administer calcium gluconate.",
+   "Vigorously stimulate the client.",
+   "Instruct the client to take deep breaths."
+  ],
+  "correct": 1,
+  "explain": "Calcium gluconate reverses the effects of magnesium sulfate. Increasing the clients IV fluids will not reverse the effects of the medication. Stimulation will not increase the respirations. Deep breaths will not be successful in reversing the effects of the magnesium sulfate.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-U1",
+  "q": "A woman with severe preeclampsia is receiving a magnesium sulfate infusion. The nurse becomes concerned after assessment when the woman exhibits:",
+  "options": [
+   "a sleepy, sedated affect.",
+   "a respiratory rate of 10 breaths/min.",
+   "deep tendon reflexes of 2+.",
+   "absent ankle clonus."
+  ],
+  "correct": 1,
+  "explain": "Because magnesium sulfate is a central nervous system (CNS) depressant, the client will most likely become sedated when the infusion is initiated. A respiratory rate of 10 breaths/min indicates that the client is experiencing respiratory depression (bradypnea) from magnesium toxicity. Deep tendon reflexes of 2+ are a normal finding. Absent ankle clonus is a normal finding.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-N18",
+  "q": "The nurse is monitoring a client with severe preeclampsia who is on IV magnesium sulfate. Which signs of magnesium toxicity should the nurse monitor for? (Select all that apply.)",
+  "options": [
+   "Cool, clammy skin",
+   "Altered sensorium",
+   "Pulse oximeter reading of 95%",
+   "Respiratory rate of less than 12 breaths/min",
+   "Absence of deep tendon reflexes"
+  ],
+  "correct": 1,
+  "corrects": [
+   1,
+   3,
+   4
+  ],
+  "explain": "Correct answers: altered sensorium, respiratory rate of less than 12 breaths/min, absence of deep tendon reflexes. Signs of magnesium toxicity include a respiratory rate of less than 12 breaths/min, altered sensorium, and absence of deep tendon reflexes.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-N13",
+  "q": "Which intervention would be the most effective if your client who is on magnesium sulfate has a respiratory rate of 10 breaths/min?",
+  "options": [
+   "Give oxygen by mask at 8-10 L/min.",
+   "Administer calcium gluconate via IV push.",
+   "Arouse client with tactile stimulation.",
+   "Continually assess pulse oximeter levels."
+  ],
+  "correct": 1,
+  "explain": "A respiratory rate of less than 12 breaths/min in a client receiving magnesium sulfate is a sign of magnesium toxicity, which must be immediately reversed. Calcium gluconate opposes the effects of magnesium at the neuromuscular junction and is an antidote for magnesium toxicity.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-U7",
+  "q": "A primigravida is receiving magnesium sulfate for the treatment of pregnancy induced hypertension (PIH). The nurse who is caring for the client is performing assessments every 30 minutes. Which assessment finding would be of most concern to the nurse?",
+  "options": [
+   "Urinary output of 20 ml since the previous assessment",
+   "Deep tendon reflexes of 2+",
+   "Respiratory rate of 10 BPM",
+   "Fetal heart rate of 120 BPM"
+  ],
+  "correct": 2,
+  "explain": "Magnesium sulfate depresses the respiratory rate. If the respiratory rate is less than 12 breaths per minute, the physician or other health care provider needs to be notified, and continuation of the medication needs to be reassessed. A urinary output of 20 ml in a 30 minute period is adequate; less than 30 ml in one hour needs to be reported. Deep tendon reflexes of 2+ are normal. The fetal heart rate is within normal limits for a resting fetus.",
+  "src": "Special O.Nursing Questions"
+ },
+ {
+  "id": "Q-U10",
+  "q": "Which of the following symptoms occurs with a hydatidiform mole?",
+  "options": [
+   "Heavy, bright red bleeding every 21 days",
+   "Fetal cardiac motion after 6 weeks gestation",
+   "Benign tumors found in the smooth muscle of the uterus",
+   "\"Snowstorm\" pattern on ultrasound with no fetus or gestational sac"
+  ],
+  "correct": 3,
+  "explain": "The chorionic villi of a molar pregnancy resemble a snowstorm pattern on ultrasound. Bleeding with a hydatidiform mole is often dark brown and may occur erratically for weeks or months.",
+  "src": "Special O.Nursing Questions"
+ }
+];
+const AM_QA = [
+ {
+  "id": "Q-HT4",
+  "q": "What are severe features of preeclampsia?",
+  "a": "SBP ≥ 160 mm Hg or DBP ≥ 110 mm Hg or more on two occasions ≥ 4 hours apart (unless antihypertensive therapy is initiated before this time); thrombocytopenia (platelets < 100,000); impaired liver function tests (> 2× normal); severe persistent right upper quadrant or epigastric pain unresponsive to medication and not accounted for by alternative diagnoses; renal insufficiency (serum creatinine concentration > 1.1 mg/dL); aspartate aminotransferase (AST) and alanine aminotransferase (ALT) elevated more than twice the upper limit of normal; platelet count less than 100,000 × 10⁹/L.",
+  "src": "Special O.Nursing Questions"
+ }
+];
+
+/* ================= shared helpers ================= */
+function $(id){ return document.getElementById(id); }
+function scrollTop(){ try{ window.scrollTo(0,0); }catch(e){} }
+function esc(s){ const d=document.createElement("div"); d.textContent=s; return d.innerHTML; }
+function srcTag(src, special){
+  return '<span class="srctag' + (special ? ' special' : '') + '">المصدر: ' + esc(src) + '</span>';
+}
+
+/* ================= screens ================= */
+const SCREENS = {'home':'screen-home','settings':'screen-settings','study':'screen-study',
+                 'summary':'screen-summary','quiz':'quiz','results':'results'};
+function showScreen(name){
+  Object.keys(SCREENS).forEach(k=>{
+    const el = $(SCREENS[k]);
+    if(!el) return;
+    const on = (k === name);
+    el.classList.toggle('active', on);
+    el.classList.toggle('hidden', !on);
+  });
+  if(name === 'home'){ const h = $('home'); if(h) h.classList.remove('hidden'); }
+  scrollTop();
+}
+
+/* ================= toast + rotating dhikr ================= */
+const DHIKR = ['سبحان الله وبحمده','سبحان الله العظيم','اللهم صل وسلم على سيدنا محمد'];
+let dhIdx = 0;
+setInterval(() => {
+  const el = $('dhikr');
+  if(!el) return;
+  el.classList.add('fade');
+  setTimeout(() => { dhIdx = (dhIdx+1) % DHIKR.length; el.textContent = DHIKR[dhIdx]; el.classList.remove('fade'); }, 450);
+}, 4000);
+let toastTimer = null;
+function toast(msg){
+  const t = $('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+}
+function ringSet(el, pct){
+  const C = 2 * Math.PI * 24;
+  el.style.strokeDasharray = C;
+  el.style.strokeDashoffset = C * (1 - pct/100);
+}
+function ringSetBig(el, r, pct){
+  const C = 2 * Math.PI * r;
+  el.style.strokeDasharray = C;
+  el.style.strokeDashoffset = C * (1 - pct/100);
+}
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+}
+
+/* ================= flashcard data (from QUESTIONS + AM arrays) ================= */
+const FC_KNOWN_KEY = 'onursing_m2_fc_known_v1';
+const FC_MISSED_KEY = 'onursing_m2_fc_missed_v1';
+let fcKnown = new Set(JSON.parse(localStorage.getItem(FC_KNOWN_KEY) || '[]'));
+let fcMissed = new Set(JSON.parse(localStorage.getItem(FC_MISSED_KEY) || '[]'));
+function saveFcKnown(){ try{ localStorage.setItem(FC_KNOWN_KEY, JSON.stringify([...fcKnown])); }catch(e){} }
+function saveFcMissed(){ try{ localStorage.setItem(FC_MISSED_KEY, JSON.stringify([...fcMissed])); }catch(e){} }
+
+const FC_SECTIONS = [
+  {name:"Define", cards: QUESTIONS.filter(q=>q.type==="written" && q.id[0]==="D" && !q.id.startsWith("DF")).map(q=>({id:q.id, q:q.q, qHtml:esc(q.q), aHtml:'<div class="ans-box"><div class="ans-label">✅ الإجابة النموذجية</div><p style="white-space:pre-line;">'+esc(q.model)+'</p></div>', sec:"Define", src:q.src, special:false}))},
+  {name:"Function", cards: QUESTIONS.filter(q=>q.type==="written" && q.id[0]==="F").map(q=>({id:q.id, q:q.q, qHtml:esc(q.q), aHtml:'<div class="ans-box"><div class="ans-label">✅ الإجابة النموذجية</div><p style="white-space:pre-line;">'+esc(q.model)+'</p></div>', sec:"Function", src:q.src, special:false}))},
+  {name:"List", cards: QUESTIONS.filter(q=>q.type==="written" && q.id[0]==="L").map(q=>({id:q.id, q:q.q, qHtml:esc(q.q), aHtml:'<div class="ans-box"><div class="ans-label">✅ الإجابة النموذجية</div><p style="white-space:pre-line;">'+esc(q.model)+'</p></div>', sec:"List", src:q.src, special:false}))},
+  {name:"Essay", cards: QUESTIONS.filter(q=>q.type==="written" && q.id[0]==="E").map(q=>({id:q.id, q:q.q, qHtml:esc(q.q), aHtml:'<div class="ans-box"><div class="ans-label">✅ الإجابة النموذجية</div><p style="white-space:pre-line;">'+esc(q.model)+'</p></div>', sec:"Essay", src:q.src, special:false}))},
+  {name:"Differentiate", cards: QUESTIONS.filter(q=>q.type==="written" && q.id.startsWith("DF")).map(q=>({id:q.id, q:q.q, qHtml:esc(q.q), aHtml:'<div class="ans-box"><div class="ans-label">✅ الإجابة النموذجية</div><p style="white-space:pre-line;">'+esc(q.model)+'</p></div>', sec:"Differentiate", src:q.src, special:false}))},
+  {name:"Special O.Nursing Questions", cards: AM_MCQ.map(item=>({id:item.id, q:item.q, qHtml:esc(item.q)+'<ol class="am-opts" type="a">'+item.options.map(o=>"<li>"+esc(o)+"</li>").join("")+"</ol>", aHtml:'<div class="ans-box"><div class="ans-label">✅ الإجابة الصحيحة</div><p><b>'+(item.corrects?('Correct answers: '+item.corrects.map(i=>esc(item.options[i])).join(' • ')):('Correct answer: '+esc(item.options[item.correct])))+'</b></p><p>'+esc(item.explain)+'</p></div>', sec:"Special O.Nursing Questions", src:item.src, special:true}))},
+  {name:"Special O.Nursing Questions", cards: AM_QA.map(item=>({id:item.id, q:item.q, qHtml:esc(item.q), aHtml:'<div class="ans-box"><div class="ans-label">✅ الإجابة</div><p style="white-space:pre-line;">'+esc(item.a)+'</p></div>', sec:"Special O.Nursing Questions", src:item.src, special:true}))},
+];
+const allFcCards = [];
+FC_SECTIONS.forEach((sec, si) => sec.cards.forEach(c => allFcCards.push({...c, secIdx: si})));
+const fcCardById = Object.fromEntries(allFcCards.map(c => [c.id, c]));
+
+/* home sections (topic cards): 0 MCQ, 1 True/False, 2 Essay, 3 Special */
+const HOME_SECTIONS = [
+  {name:"MCQ", meta:"اختيار من متعدد", count:12, kind:"scored", type:"mcq", cardId:"sec-mcq"},
+  {name:"True / False", meta:"صح وخطأ", count:24, kind:"scored", type:"tf", cardId:"sec-tf"},
+  {name:"Essay Flashcards", meta:"بطاقات مقالية", count:114, kind:"fc", group:"essay", cardId:"flashcards"},
+  {name:"Special O.Nursing Questions", meta:"16 سؤال", count:16, kind:"fc", group:"special", cardId:"special"},
+];
+let selected = new Set(HOME_SECTIONS.map((_, i) => i));
+let fcQueue = [], fcIdx = 0, fcFlipped = false;
+let optScope = 'all', optShuffle = 'off';
+let requeueMode = 'none', requeueMins = 3;
+let endQueue = [], dueList = [], reviewIds = new Set();
+
+/* ================= scored-quiz globals (local timer hooks — DO NOT rename) ================= */
+const LVL = {easy:"سهل", med:"متوسط", hard:"صعب"};
+const LVLCLS = {easy:"easy", med:"med", hard:"hard"};
+const KEY = "onursing_maternity_module2_progress_v1";
+let selectedLvl = "all";
+let queue = [], idx = 0, score = 0, answered = 0, results = [];
+let levelStats = {easy:{t:0,c:0}, med:{t:0,c:0}, hard:{t:0,c:0}};
+let locked = false;
+
+function loadProg(){ try{ return JSON.parse(localStorage.getItem(KEY)) || {}; }catch(e){ return {}; } }
+function saveProg(p){ try{ localStorage.setItem(KEY, JSON.stringify(p)); }catch(e){} }
+
+/* ================= HOME ================= */
+function sectionStats(si){
+  const sec = HOME_SECTIONS[si];
+  if(sec.kind === "scored"){
+    const p = loadProg();
+    const done = p.done || {}, correct = p.correct || {};
+    const ids = QUESTIONS.filter(q=>q.type===sec.type).map(q=>q.id);
+    const a = ids.filter(id=>done[id]).length;
+    const c = ids.filter(id=>correct[id]).length;
+    return {total: ids.length, known: a, correct: c};
+  }
+  const ids = sec.group === "essay"
+    ? allFcCards.filter(c=>c.secIdx < 5).map(c=>c.id)
+    : allFcCards.filter(c=>c.secIdx >= 5).map(c=>c.id);
+  const k = ids.filter(id=>fcKnown.has(id)).length;
+  return {total: ids.length, known: k};
+}
+function renderTopics(){
+  const list = $('topic-list');
+  list.innerHTML = '';
+  HOME_SECTIONS.forEach((sec, i) => {
+    const {total, known: k, correct} = sectionStats(i);
+    const pct = total ? Math.round(k/total*100) : 0;
+    const card = document.createElement('div');
+    card.className = 'topic-card' + (selected.has(i) ? ' checked' : '');
+    card.id = sec.cardId;
+    const meta = sec.kind === "scored"
+      ? (sec.meta + ' • ' + k + '/' + total + ' answered' + (correct ? ' • ' + correct + ' صح' : ''))
+      : (sec.meta + ' • ' + k + '/' + total + ' known');
+    card.innerHTML =
+      '<div class="topic-card-top">' +
+        '<div class="topic-check">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>' +
+        '</div>' +
+        '<div class="topic-progress-ring">' +
+          '<svg viewBox="0 0 30 30">' +
+            '<circle class="bg-ring" cx="15" cy="15" r="12"/>' +
+            '<circle class="fg-ring" cx="15" cy="15" r="12"/>' +
+          '</svg>' +
+          '<div class="pct">' + pct + '%</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="topic-info">' +
+        '<div class="t-name" dir="ltr" style="text-align:left">' + sec.name + '</div>' +
+        '<div class="t-meta">' + meta + '</div>' +
+      '</div>';
+    const fg = card.querySelector('.fg-ring');
+    const C = 2*Math.PI*12;
+    fg.style.strokeDasharray = C;
+    fg.style.strokeDashoffset = C*(1-pct/100);
+    card.addEventListener('click', () => {
+      selected.has(i) ? selected.delete(i) : selected.add(i);
+      renderTopics(); updateSelBar();
+    });
+    list.appendChild(card);
+  });
+}
+function updateSelBar(){
+  $('sel-count').textContent = selected.size + ' أقسام محددة';
+  $('btn-start').disabled = selected.size === 0;
+}
+function updateHomeStats(){
+  $('stat-total').textContent = QUESTIONS.filter(q=>q.type!=="written").length;
+  $('stat-topics').textContent = allFcCards.length;
+  $('stat-known').textContent = Math.round(fcKnown.size/allFcCards.length*100) + '%';
+  renderMissedBin();
+}
+function renderMissedBin(){
+  const arr = allFcCards.filter(c => fcMissed.has(c.id));
+  $('missed-count').textContent = arr.length + ' بطاقة مستنية مراجعة';
+  $('btn-review-missed').disabled = arr.length === 0;
+}
+$('btn-review-missed').addEventListener('click', () => {
+  fcQueue = allFcCards.filter(c => fcMissed.has(c.id));
+  if(!fcQueue.length) return;
+  fcIdx = 0; endQueue = []; dueList = []; reviewIds = new Set();
+  showScreen('study');
+  renderFcCard();
+  toast('مراجعة سريعة للبطاقات اللي مش عارفها ⚡');
+});
+$('btn-select-all').addEventListener('click', () => {
+  selected = selected.size === HOME_SECTIONS.length ? new Set() : new Set(HOME_SECTIONS.map((_,i)=>i));
+  renderTopics(); updateSelBar();
+});
+$('btn-reset-all').addEventListener('click', () => {
+  let ok = true;
+  if(typeof confirm === 'function') ok = confirm('متأكد عايز تمسح كل التقدم المحفوظ؟');
+  if(!ok) return;
+  fcKnown = new Set(); saveFcKnown(); fcMissed = new Set(); saveFcMissed();
+  try{ localStorage.removeItem(KEY); }catch(e){}
+  renderTopics(); updateHomeStats(); refreshHome();
+});
+function refreshHome(){
+  const p = loadProg();
+  const done = p.done || {}, correct = p.correct || {};
+  const n = Object.keys(done).length;
+  const c = Object.keys(correct).length;
+  $('home-stats').textContent = n ? ("تقدّمك: أجبت على " + n + " سؤال من 36 — إجابات صحيحة: " + c + (p.best!=null ? (" • أفضل نتيجة: " + p.best + "%") : "")) : "ابدأ من السهل وتدرّج — كل سؤال معه تلميح وشرح.";
+  $('btn-resume').classList.toggle('hidden', !n || n>=36);
+}
+document.querySelectorAll("#levels .lvl").forEach(b=>{
+  b.addEventListener("click", ()=>{
+    document.querySelectorAll("#levels .lvl").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on"); selectedLvl = b.dataset.lvl;
+  });
+});
+/* primary Start: scored sections -> timed quiz (full 36, timer rule);
+   flashcards only -> settings screen for the flip-card study flow */
+function onPrimaryStart(){
+  const scoredSel = selected.has(0) || selected.has(1);
+  const fcSel = selected.has(2) || selected.has(3);
+  if(scoredSel){ startQuiz(false); return; }
+  if(fcSel){ renderSettings(); showScreen('settings'); return; }
+}
+$('btn-start').addEventListener('click', onPrimaryStart);
+$('btn-resume').addEventListener('click', ()=>startQuiz(true));
+
+/* ================= SETTINGS (flashcard study) ================= */
+function fcSelectedGroups(){
+  const groups = [];
+  if(selected.has(2)) groups.push(0, 1, 2, 3, 4);
+  if(selected.has(3)) groups.push(5, 6);
+  return groups;
+}
+function queuePreview(){
+  let cards = [];
+  fcSelectedGroups().forEach(i => cards.push(...FC_SECTIONS[i].cards));
+  if(optScope === 'unknown') cards = cards.filter(c => !fcKnown.has(c.id));
+  return cards;
+}
+function renderSettings(){
+  const cards = [];
+  fcSelectedGroups().forEach(i => cards.push(...FC_SECTIONS[i].cards));
+  const k = cards.filter(c => fcKnown.has(c.id)).length;
+  const pct = cards.length ? Math.round(k/cards.length*100) : 0;
+  ringSet($('settings-ring'), pct);
+  $('settings-pct').textContent = pct + '%';
+  $('settings-progress-txt').textContent = k + ' من ' + cards.length + ' بطاقة معروفة';
+  updateQueueNote();
+}
+function updateQueueNote(){
+  const n = queuePreview().length;
+  $('queue-note').textContent = n ? ('عدد البطاقات في الجلسة: ' + n) : 'مفيش بطاقات — كل البطاقات المحددة معروفة ✓';
+  $('btn-start-study').disabled = n === 0;
+}
+document.querySelectorAll('.opt-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    const g = b.dataset.group;
+    document.querySelectorAll('.opt-btn[data-group="' + g + '"]').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    if(g === 'scope') optScope = b.dataset.val;
+    if(g === 'shuffle') optShuffle = b.dataset.val;
+    if(g === 'requeue'){
+      requeueMode = b.dataset.val;
+      $('requeue-time-row').classList.toggle('disabled', requeueMode !== 'time');
+    }
+    updateQueueNote();
+  });
+});
+document.querySelectorAll('.time-chip').forEach(ch => {
+  ch.addEventListener('click', () => {
+    document.querySelectorAll('.time-chip').forEach(x => x.classList.remove('active'));
+    ch.classList.add('active');
+    requeueMins = parseInt(ch.dataset.mins, 10);
+  });
+});
+$('btn-back-home').addEventListener('click', () => { renderTopics(); updateHomeStats(); showScreen('home'); });
+$('btn-clear-selection-progress').addEventListener('click', () => {
+  fcSelectedGroups().forEach(i => FC_SECTIONS[i].cards.forEach(c => fcKnown.delete(c.id)));
+  saveFcKnown(); renderSettings(); renderTopics(); updateHomeStats();
+});
+$('btn-start-study').addEventListener('click', () => {
+  fcQueue = queuePreview();
+  if(optShuffle === 'on') shuffle(fcQueue);
+  fcIdx = 0; endQueue = []; dueList = []; reviewIds = new Set();
+  showScreen('study');
+  renderFcCard();
+});
+
+/* ================= STUDY (flip flashcards) ================= */
+function renderFcCard(){
+  const c = fcQueue[fcIdx];
+  if(!c){ showFcSummary(); return; }
+  fcFlipped = false;
+  $('flashcard').classList.remove('flipped');
+  $('mark-row').classList.add('hidden');
+  $('fc-qnum').textContent = c.id.toUpperCase();
+  $('fc-qtitle').innerHTML = c.qHtml;
+  $('fc-src').innerHTML = srcTag(c.src, c.special);
+  $('fc-answer').innerHTML = c.aHtml;
+  $('card-sec').textContent = c.sec;
+  $('card-ext').classList.add('hidden');
+  $('card-review').classList.toggle('hidden', !reviewIds.has(c.id));
+  $('card-known').classList.toggle('hidden', !fcKnown.has(c.id));
+  $('qcounter').textContent = (fcIdx+1) + ' / ' + fcQueue.length;
+  $('qbar-fill').style.width = (fcQueue.length ? (fcIdx/fcQueue.length*100) : 0) + '%';
+  $('btn-prev').disabled = fcIdx === 0;
+  $('fc-answer').scrollTop = 0;
+}
+$('flashcard').addEventListener('click', () => {
+  fcFlipped = !fcFlipped;
+  $('flashcard').classList.toggle('flipped', fcFlipped);
+  $('mark-row').classList.toggle('hidden', !fcFlipped);
+});
+$('btn-know').addEventListener('click', e => {
+  e.stopPropagation();
+  const id = fcQueue[fcIdx].id;
+  fcKnown.add(id); saveFcKnown();
+  fcMissed.delete(id); saveFcMissed();
+  dueList = dueList.filter(d => d.id !== id);
+  reviewIds.delete(id);
+  nextFcCard();
+});
+$('btn-dunno').addEventListener('click', e => {
+  e.stopPropagation();
+  const id = fcQueue[fcIdx].id;
+  fcKnown.delete(id); saveFcKnown();
+  fcMissed.add(id); saveFcMissed();
+  if(requeueMode === 'end'){
+    if(!endQueue.includes(id)) endQueue.push(id);
+  } else if(requeueMode === 'time'){
+    dueList = dueList.filter(d => d.id !== id);
+    dueList.push({id, due: Date.now() + requeueMins*60000});
+    toast('هترجعلك بعد ' + (requeueMins === 1 ? 'دقيقة' : requeueMins + ' دقايق') + ' ⏰');
+  }
+  nextFcCard();
+});
+function pumpDue(){
+  const now = Date.now();
+  const dueNow = dueList.filter(d => d.due <= now);
+  if(!dueNow.length) return;
+  dueList = dueList.filter(d => d.due > now);
+  const remaining = new Set(fcQueue.slice(fcIdx+1).map(c => c.id));
+  const insert = [];
+  dueNow.forEach(d => {
+    if(!remaining.has(d.id) && fcCardById[d.id]){
+      insert.push(fcCardById[d.id]); remaining.add(d.id); reviewIds.add(d.id);
+    }
+  });
+  if(insert.length) fcQueue = fcQueue.slice(0, fcIdx+1).concat(insert, fcQueue.slice(fcIdx+1));
+}
+function nextFcCard(){
+  pumpDue();
+  if(fcIdx < fcQueue.length - 1){ fcIdx++; renderFcCard(); }
+  else if(requeueMode === 'end' && endQueue.length){
+    fcQueue = endQueue.map(id => fcCardById[id]).filter(Boolean);
+    endQueue = [];
+    reviewIds = new Set(fcQueue.map(c => c.id));
+    fcIdx = 0;
+    toast('جولة مراجعة للبطاقات الغلط 🔁');
+    renderFcCard();
+  }
+  else {
+    $('qbar-fill').style.width = '100%';
+    setTimeout(showFcSummary, 350);
+  }
+}
+$('btn-next-card').addEventListener('click', nextFcCard);
+$('btn-prev').addEventListener('click', () => { if(fcIdx > 0){ fcIdx--; renderFcCard(); } });
+$('btn-shuffle').addEventListener('click', () => {
+  const rest = fcQueue.slice(fcIdx + 1);
+  shuffle(rest);
+  fcQueue = fcQueue.slice(0, fcIdx + 1).concat(rest);
+  renderFcCard();
+});
+$('btn-exit-study').addEventListener('click', () => {
+  renderTopics(); updateHomeStats(); showScreen('home');
+});
+document.addEventListener('keydown', e => {
+  if(!$('screen-study').classList.contains('active')) return;
+  if(e.code === 'Space'){ e.preventDefault(); $('flashcard').click(); }
+  if(e.code === 'ArrowLeft'){ $('btn-next-card').click(); }
+  if(e.code === 'ArrowRight'){ $('btn-prev').click(); }
+});
+
+/* ================= SUMMARY (flashcards) ================= */
+function showFcSummary(){
+  const k = fcQueue.filter(c => fcKnown.has(c.id)).length;
+  const total = fcQueue.length;
+  const pct = total ? Math.round(k/total*100) : 0;
+  ringSetBig($('results-ring'), 65, pct);
+  setTimeout(() => { $('results-pct').textContent = pct + '%'; }, 60);
+  $('results-known').textContent = k;
+  $('results-unknown').textContent = total - k;
+  $('results-total').textContent = total;
+  $('results-title').textContent = pct === 100 ? 'ممتاز! كلها معروفة 🎉' : pct >= 70 ? 'عاش! قربت تخلصها 💪' : 'خلصت الجلسة 🩺';
+  $('results-sub').textContent = pct === 100 ? 'مفيش حاجة تراجعها' : 'راجع البطاقات اللي لسه مش عارفها تحت';
+
+  const list = $('review-list');
+  list.innerHTML = '';
+  const unknown = fcQueue.filter(c => !fcKnown.has(c.id));
+  if(!unknown.length){
+    list.innerHTML = '<div class="empty-review">مفيش بطاقات محتاجة مراجعة — كله تمام ✓</div>';
+  } else {
+    unknown.forEach(c => {
+      const item = document.createElement('div');
+      item.className = 'review-item';
+      item.innerHTML = '<div class="rq">' + c.id.toUpperCase() + '. ' + c.qHtml + '</div>' +
+        '<div class="ra">' + c.aHtml + '</div>';
+      item.addEventListener('click', () => item.classList.toggle('open'));
+      list.appendChild(item);
+    });
+  }
+  renderTopics(); updateHomeStats();
+  showScreen('summary');
+}
+$('btn-retry-unknown').addEventListener('click', () => {
+  fcQueue = fcQueue.filter(c => !fcKnown.has(c.id));
+  if(!fcQueue.length){ showScreen('home'); return; }
+  if(optShuffle === 'on') shuffle(fcQueue);
+  fcIdx = 0;
+  showScreen('study');
+  renderFcCard();
+});
+$('btn-go-home-2').addEventListener('click', () => { renderTopics(); updateHomeStats(); showScreen('home'); });
+$('btn-summary-exit').addEventListener('click', () => { renderTopics(); updateHomeStats(); showScreen('home'); });
+
+/* ================= SCORED QUIZ (MCQ + True/False, flip-card design) ================= */
+function buildQueue(resume){
+  /* A timed attempt always runs the FULL 36 scored questions (timer rule);
+     the level filter only narrows untimed practice, and a timed start
+     forces level 'all'. */
+  let pool = QUESTIONS.filter(q => q.type!=="written" && (selectedLvl==="all" || q.level===selectedLvl));
+  if(resume){
+    const p = loadProg(); const done = p.done || {};
+    pool = pool.filter(q => !done[q.id]);
+    if(!pool.length){ pool = QUESTIONS.filter(q => q.type!=="written" && (selectedLvl==="all" || q.level===selectedLvl)); }
+  }
+  return pool.slice();
+}
+function startQuiz(resume){
+  queue = buildQueue(resume); idx = 0; score = 0; answered = 0; results = [];
+  levelStats = {easy:{t:0,c:0}, med:{t:0,c:0}, hard:{t:0,c:0}};
+  queue.forEach(q=>{ if(q.type!=="written") levelStats[q.level].t++; });
+  showScreen('quiz');
+  renderQ();
+}
+function cur(){ return queue[idx]; }
+function renderQ(){
+  const q = cur(); locked = false;
+  $("quiz-card").classList.remove("flipped");
+  $("prog-fill").style.width = (idx/queue.length*100) + "%";
+  $("q-count").textContent = (idx+1) + " / " + queue.length;
+  $("q-badge").innerHTML = '<span class="badge '+LVLCLS[q.level]+'">'+LVL[q.level]+'</span>';
+  $("q-score").textContent = "صح: " + score + " / " + answered;
+  $("quiz-sec").textContent = q.type === "mcq" ? "MCQ" : "True / False";
+  $("quiz-qnum").textContent = q.id.toUpperCase();
+  $("q-stem").innerHTML = q.q + (q.ar ? '<span class="ar-note">'+q.ar+'</span>' : "");
+  $("q-src").innerHTML = '<span class="srctag">المصدر: ' + esc(q.src || "Special Notes") + '</span>';
+  $("q-hint").classList.remove("show"); $("q-hint").textContent = q.hint || "";
+  $("btn-hint").style.display = q.hint ? "" : "none";
+  const ex = $("q-explain"); ex.classList.remove("show","ok","no"); ex.innerHTML = "";
+  const mo = $("q-model"); mo.classList.remove("show"); mo.textContent = "";
+  $("btn-next").classList.add("hidden"); $("btn-finish").classList.add("hidden");
+  const body = $("q-body"); body.innerHTML = "";
+  if(q.type === "mcq"){
+    const box = document.createElement("div"); box.className = "opts";
+    q.options.forEach((op,i)=>{
+      const b = document.createElement("button"); b.className = "opt"; b.textContent = op;
+      b.addEventListener("click", ()=>answerMcq(i, b)); box.appendChild(b);
+    });
+    body.appendChild(box);
+  } else if(q.type === "tf"){
+    const box = document.createElement("div"); box.className = "tf";
+    [["True", true], ["False", false]].forEach(([label, val])=>{
+      const b = document.createElement("button"); b.className = "opt"; b.textContent = label;
+      b.addEventListener("click", ()=>answerTf(val, b)); box.appendChild(b);
+    });
+    body.appendChild(box);
+  }
+}
+$("btn-hint").addEventListener("click", ()=>{ $("q-hint").classList.toggle("show"); });
+/* tap the flipped card to flip back to the question */
+$("quiz-card").addEventListener("click", (e)=>{
+  /* an option tap bubbles up here — it must NOT flip the card back, or the
+     explanation would vanish the instant the student answers (bug found
+     by the fold-in harness 2026-11-23) */
+  if(e.target.closest('.opt')) return;
+  if($("quiz-card").classList.contains("flipped")) $("quiz-card").classList.remove("flipped");
+});
+function markProgress(id, ok){
+  const p = loadProg(); p.done = p.done || {}; p.correct = p.correct || {};
+  p.done[id] = true; if(ok) p.correct[id] = true; saveProg(p);
+}
+function finishAnswer(ok){
+  answered++; if(ok) score++;
+  markProgress(cur().id, ok);
+  results.push({id:cur().id, ok:ok});
+  $("q-score").textContent = "صح: " + score + " / " + answered;
+  showNav();
+}
+function showNav(){
+  if(idx < queue.length-1){ $("btn-next").classList.remove("hidden"); }
+  else { $("btn-finish").classList.remove("hidden"); }
+}
+function answerMcq(i, btn){
+  if(locked) return; locked = true;
+  const q = cur(); const ok = (i === q.correct);
+  document.querySelectorAll("#q-body .opt").forEach((el, j)=>{
+    el.disabled = true;
+    if(j === q.correct) el.classList.add("correct");
+    if(j === i && !ok) el.classList.add("wrong");
+  });
+  const ex = $("q-explain");
+  ex.innerHTML = (ok ? "<b>✓ إجابة صحيحة.</b> " : "<b>✗ إجابة خاطئة.</b> الصح: <b>" + q.options[q.correct] + "</b><br>") + q.explain;
+  ex.classList.add("show", ok ? "ok" : "no");
+  finishAnswer(ok);
+  $("quiz-card").classList.add("flipped");
+}
+function answerTf(val, btn){
+  if(locked) return; locked = true;
+  const q = cur(); const ok = (val === q.correct);
+  document.querySelectorAll("#q-body .opt").forEach(el=>{
+    el.disabled = true;
+    const v = el.textContent === "True";
+    if(v === q.correct) el.classList.add("correct");
+    if(el === btn && !ok) el.classList.add("wrong");
+  });
+  const ex = $("q-explain");
+  ex.innerHTML = (ok ? "<b>✓ إجابة صحيحة.</b> " : "<b>✗ إجابة خاطئة.</b> الصح: <b>" + (q.correct ? "True" : "False") + "</b><br>") + q.explain;
+  ex.classList.add("show", ok ? "ok" : "no");
+  finishAnswer(ok);
+  $("quiz-card").classList.add("flipped");
+}
+$("btn-next").addEventListener("click", ()=>{ idx++; renderQ(); });
+$("btn-finish").addEventListener("click", showResults);
+$("btn-quiz-exit").addEventListener("click", ()=>{ renderTopics(); updateHomeStats(); refreshHome(); showScreen('home'); });
+function showResults(){
+  showScreen('results');
+  const total = results.length || 1;
+  const pct = Math.round(score/total*100);
+  $("res-pct").textContent = pct + "%";
+  const ring = $("ring-fg");
+  ring.style.strokeDashoffset = 408 - (408*pct/100);
+  const p = loadProg(); if(p.best==null || pct > p.best){ p.best = pct; saveProg(p); }
+  let msg = pct>=90 ? "ممتاز! الموضوع ده بقى في جيبك." : pct>=70 ? "كويس جداً — راجع الغلطات وهتبقى ممتاز." : pct>=50 ? "بداية كويسة — راجع الشرح والغلطات وحاول تاني." : "محتاج مراجعة — ارجع للشرح في الملف وحاول تاني.";
+  $("res-line").innerHTML = "أجبت صح على <b>" + score + "</b> من <b>" + total + "</b> سؤال<br>" + msg;
+  let rows = "<tr><th>المستوى</th><th>صح</th><th>من</th></tr>";
+  const agg = {easy:{t:0,c:0}, med:{t:0,c:0}, hard:{t:0,c:0}};
+  results.forEach(r=>{ const q = QUESTIONS.find(x=>x.id===r.id); if(!q) return; agg[q.level].t++; if(r.ok) agg[q.level].c++; });
+  ["easy","med","hard"].forEach(l=>{ if(agg[l].t) rows += "<tr><td>"+LVL[l]+"</td><td>"+agg[l].c+"</td><td>"+agg[l].t+"</td></tr>"; });
+  $("res-table").innerHTML = rows;
+}
+$("btn-retry").addEventListener("click", ()=>startQuiz(false));
+$("btn-home").addEventListener("click", ()=>{
+  renderTopics(); updateHomeStats(); refreshHome(); showScreen('home');
+});
+
+/* O.Nursing — QR-only protection: block copying, right-click, printing */
+document.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+document.addEventListener("copy", function(e){ e.preventDefault(); });
+document.addEventListener("cut", function(e){ e.preventDefault(); });
+document.addEventListener("dragstart", function(e){ e.preventDefault(); });
+document.addEventListener("keydown", function(e){
+  if((e.ctrlKey || e.metaKey) && ["c","x","u","s","p","a"].indexOf(e.key.toLowerCase()) !== -1){ e.preventDefault(); }
+});
+
+/* ---------- INIT ---------- */
+renderTopics(); updateSelBar(); updateHomeStats(); refreshHome();
+</script>
+<script src="timer-snippet-v2.js"></script>
+</body>
+</html>
